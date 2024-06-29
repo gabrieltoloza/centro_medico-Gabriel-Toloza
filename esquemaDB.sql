@@ -279,9 +279,9 @@ ALTER TABLE centro_medico.matriculas
 
 
 
---Constraint para la tabla "RUP_registro_matriculas"
---Constraint para la tabla "RUP_registro_matriculas"
---Constraint para la tabla "RUP_registro_matriculas"
+-- Constraint para la tabla "RUP_registro_matriculas"
+-- Constraint para la tabla "RUP_registro_matriculas"
+-- Constraint para la tabla "RUP_registro_matriculas"
 ALTER TABLE centro_medico.RUP_registro_matriculas 
 	ADD CONSTRAINT FK_id_matricula FOREIGN KEY (id_matricula) REFERENCES matriculas(id_matricula);
 
@@ -572,28 +572,6 @@ fecha_fin
 	(1, 6, 'Paciente presenta intenciones de autoflagelo con posibilidades de suicidio. ¡Es prioridad tratamiento en conjunto con el area de psiquiatria', '2023-02-25', NULL);
 	
 
-
-
-
-INSERT INTO centro_medico.centro_medico_lorena (
-cantidad_duenos,
-cantidad_empleados,
-cantidad_pacientes,
-cantidad_tratamientos,
-cantidad_medicos,
-direccion,
-telefono,
-email
-) VALUES
-	((SELECT COUNT(centro_medico.duenos.id_dueno) FROM centro_medico.duenos), 
-	(SELECT COUNT(centro_medico.empleados.id_empleado) FROM centro_medico.empleados), 
-	(SELECT COUNT(centro_medico.pacientes.id_paciente) FROM centro_medico.pacientes), 
-	(SELECT COUNT(centro_medico.tratamientos.id_tratamiento) FROM centro_medico.tratamientos), 
-	(SELECT COUNT(centro_medico.medicos.id_medico) FROM centro_medico.medicos), 
-	'Av. Cordoba 1545',
-	02204588525,
-	'centro_medico_lorena@gmail.com'
-	);
 
 
 
