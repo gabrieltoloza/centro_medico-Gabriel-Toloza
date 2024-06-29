@@ -1,6 +1,6 @@
 # Centro Medico - Salud Mental // Gabriel Toloza
 
-> Este proyecto se trata de un centro medico orientado a salud mental, se debe gestionar los servicios dados hacia pacientes ofreciendo profesionales(medicos) para cubrir necesidades. El diseño de la base de datos gestiona medicos con sus respectivas matriculas y profesion, pacientes con sus obras sociales y facturacion, tanto como para medicos en forma de salarios/honorarios y pacientes en forma de aranceles. 
+> Este proyecto se trata de un centro medico orientado a salud mental, se debe gestionar los servicios dados hacia pacientes ofreciendo profesionales(medicos) para cubrir necesidades. El diseño de la base de datos gestiona tratamientos, medicos con sus respectivas matriculas y profesion, pacientes con sus obras sociales y facturacion, tanto como para medicos en forma de salarios/honorarios y pacientes en forma de aranceles. 
 
 > Ademas se gestiona las entidades para manejar los empleados, sus puestos y obra social correspondiente.
 
