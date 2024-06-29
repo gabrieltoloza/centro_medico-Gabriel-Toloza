@@ -4,12 +4,12 @@
 
 > Ademas se gestiona las entidades para manejar los empleados, sus puestos y obra social correspondiente.
 
-> 
 
+> -
 
-![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/centro_medico.png)
+![Centro Medico - Saludo Mental - Excalidraw](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/DER-Centro_Medico-Excalidraw.png)
 
-
+> -
 
 ## Listado de tablas y descripcion
 
@@ -22,6 +22,7 @@
 |               | DOMICILIO         | VARCHAR(255) NOT NULL                 |
 |               | TELEFONO          | BIGINT UNIQUE NOT NULL                |
 
+> -
 
 | Tabla         | Columna           | Tipo de Datos                         |
 | ------------- | ----------------- |                                  ---: |
@@ -49,6 +50,7 @@
 |                   | ID_PUESTO          | INT NOT NULL                 |
 
 
+> -
 
 | Tabla         | Columna            | Tipo de Datos                         |
 | ------------- | ------------------ |                                  ---: |
@@ -86,7 +88,7 @@
 | PACIENTES     | NOMBRE_OSOCIAL    | VARCHAR(255) NOT NULL                 |
 |               | CARNET_NUMERO     | BIGINT UNIQUE NOT NULL                |
 
-
+> -
 
 | Tabla         | Columna           | Tipo de Datos                         |
 | ------------- | ----------------- |                                  ---: |
@@ -112,7 +114,7 @@
 | PROFESIONES   | ID_PROFESION      | INT NOT NULL                          |
 | MEDICOS       | ID_MEDICO         | INT NOT NULL                          |
 
-
+> -
 
 | Tabla         | Columna           | Tipo de Datos                         |
 | ------------- | ----------------- |                                  ---: |
@@ -161,4 +163,11 @@
 |               | ID_TRATAMIENTO    | INT NOT NULL                          |
 |               | HORAS_TRABAJADAS  | INT NOT NULL                          |
 |               | MONTO             | DECIMAL(12,2) NOT NULL                |
-|               | MES_FACTURADO     | DATE                                  |g
+|               | MES_FACTURADO     | DATE                                  |
+
+
+
+> -
+
+
+![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/DER-Centro_Medico-DBeaver.png)
