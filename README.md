@@ -161,4 +161,4 @@
 |               | ID_TRATAMIENTO    | INT NOT NULL                          |
 |               | HORAS_TRABAJADAS  | INT NOT NULL                          |
 |               | MONTO             | DECIMAL(12,2) NOT NULL                |
-|               | MES_FACTURADO     | DATE                                  |
+|               | MES_FACTURADO     | DATE                                  |g
