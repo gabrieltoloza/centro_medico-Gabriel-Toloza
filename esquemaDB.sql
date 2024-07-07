@@ -5,6 +5,7 @@ CREATE DATABASE centro_medico;
 USE centro_medico;
 
 
+
 CREATE TABLE duenos (
 	id_dueno INT AUTO_INCREMENT NOT NULL,
 	nombre_dueno VARCHAR(255) NOT NULL,
@@ -17,9 +18,26 @@ CREATE TABLE duenos (
 
 
 
+CREATE TABLE centros_medicos (
+	id_centro_medico INT AUTO_INCREMENT NOT NULL,
+	id_dueno INT NOT NULL,
+	nombre VARCHAR(255) NOT NULL,
+	direccion VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	telefono BIGINT UNIQUE NOT NULL,
+	ciudad VARCHAR(255) NOT NULL,
+	provincia VARCHAR(255) NOT NULL,
+	codigo_postal INT NOT NULL,
+	sitio_web VARCHAR(255) UNIQUE NOT NULL,
+	PRIMARY KEY (id_centro_medico)
+) COMMENT "Tabla que relaciona todas las entidades que pueden trabajar en un centro medico, hay 3 centros medicos";
+
+
+
 
 CREATE TABLE empleados (
 	id_empleado INT AUTO_INCREMENT NOT NULL,
+	id_centro_medico INT NOT NULL,
 	nombre_empleado VARCHAR(255) NOT NULL,
 	apellido_empleado VARCHAR(255) NOT NULL,
 	dni_empleado BIGINT NOT NULL UNIQUE,
@@ -82,6 +100,7 @@ CREATE TABLE honorario_facturas (
 
 CREATE TABLE pacientes (
 	id_paciente INT AUTO_INCREMENT NOT NULL,
+	id_centro_medico INT NOT NULL,
 	nombre_paciente VARCHAR(255) NOT NULL,
 	apellido VARCHAR(255) NOT NULL,
 	dni BIGINT NOT NULL UNIQUE,
@@ -110,6 +129,7 @@ CREATE TABLE obra_social_pacientes (
 
 CREATE TABLE medicos (
 	id_medico INT AUTO_INCREMENT NOT NULL,
+	id_centro_medico INT NOT NULL,
 	nombre_medico VARCHAR(255) NOT NULL,
 	apellido_medico VARCHAR(255) NOT NULL,
 	cuit BIGINT NOT NULL UNIQUE,
@@ -166,6 +186,7 @@ CREATE TABLE RUP_registro_matriculas (
 
 CREATE TABLE tratamientos (
 	id_tratamiento INT AUTO_INCREMENT NOT NULL,
+	id_centro_medico INT NOT NULL,
 	id_medico INT NOT NULL,
 	id_paciente INT NOT NULL,
 	descripcion TEXT,
@@ -218,6 +239,36 @@ CREATE TABLE factura_medico (
 -- --------------------------------------------------------------------------------------------------------------------
 
 
+
+-- Constraints para la tabla "centros_medicos"
+-- Constraints para la tabla "centros_medicos"
+-- Constraints para la tabla "centros_medicos"
+ALTER TABLE centro_medico.centros_medicos
+	ADD CONSTRAINT fk_duenos_id_dueno FOREIGN KEY (id_dueno) REFERENCES duenos(id_dueno);
+
+
+
+
+-- Constraints para la tabla "empleados"
+-- Constraints para la tabla "empleados"
+-- Constraints para la tabla "empleados"
+ALTER TABLE centro_medico.empleados
+	ADD CONSTRAINT fk_centros_medicos_empleado FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico);
+
+
+
+
+-- Constraints para la tabla "pacientes"
+-- Constraints para la tabla "pacientes"
+-- Constraints para la tabla "pacientes"
+ALTER TABLE centro_medico.pacientes
+	ADD CONSTRAINT fk_centros_medicos_pacientes FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico);
+
+
+
+-- Constraints para la tabla "medicos"
+ALTER TABLE centro_medico.medicos
+	ADD CONSTRAINT fk_centros_medicos_medicos FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico);
 
 
 
@@ -296,6 +347,9 @@ ALTER TABLE centro_medico.tratamientos
 	
 ALTER TABLE centro_medico.tratamientos
 	ADD CONSTRAINT FK_tratamientos_id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id_paciente);
+
+ALTER TABLE centro_medico.tratamientos
+	ADD CONSTRAINT fk_centros_medicos_tratamientos FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico);
 	
 
 
@@ -336,6 +390,38 @@ ALTER TABLE centro_medico.factura_medico
 -- Insercion de datos
 
 
+INSERT INTO centro_medico.duenos (
+nombre_dueno,
+apellido_dueno,
+dni_dueno,
+domicilio_dueno,
+telefono_dueno
+) VALUES
+	('Ricardo', 'Fariña', 26458457, 'Gral. Rosas 1525', 1145258877),
+	('Bernarda', 'Chela', 27410255, 'Corrientes 956', 1165255587),
+	('Adrian', 'Frenucci', 29545777, 'Cordoba 1144', 1123659545);
+
+
+
+
+INSERT INTO centro_medico.centros_medicos (
+id_dueno,
+nombre,
+direccion,
+email,
+telefono,
+ciudad,
+provincia,
+codigo_postal,
+sitio_web
+) VALUES
+	(1, "Centro medico Lorena", "Cordoba 255", "centro_medico_lorena@gmail.com", 02204528588, "Merlo", "Buenos Aires", 1722, "www.centromedicolorena.com.ar"),
+	(2, "Centro medico Oeste", "Av. Rivadavia 7558", "oeste_centromedico@gmail.com", 02204524567, "San Antonio de Padua", "Buenos Aires", 1722, "www.oestecentromedico.com.ar"),
+	(3, "Salud Mental Quillinzo", "O'brien 1598", "salud_mental_Quillinzo@gmail.com", 03514568852, "Valle Calamuchita", "Cordoba", 5196, "www.quillinzo-salud-mental.com.ar");
+	
+
+
+
 
 
 INSERT INTO centro_medico.puestos (
@@ -352,6 +438,7 @@ descripcion_puesto
 
 
 INSERT INTO centro_medico.empleados (
+id_centro_medico,
 nombre_empleado, 
 apellido_empleado, 
 dni_empleado, 
@@ -359,15 +446,15 @@ domicilio_empleado,
 telefono_empleado, 
 fecha_alta
 ) VALUES
-	('Rosana', 'Ramirez', 38524874, 'Av. Libertador 888', 1147581956, '2020-05-10'),
-	('Julian', 'Prieto', 31458741, 'Cordoba 9784', 1178459258, '2021-06-15'),
-	('Florencia', 'Rancatti', 33562415, 'San Martin 111', 1148568525, '2020-02-22'),
-	('Maria', 'Gomez', 37841595, '25 de Mayo 7418', 1178549526, '2021-11-02'),
-	('Leonardo', 'Diaz', 37845159, 'Flores 2145', 1145781245, '2021-09-16'),
-	('Camila', 'Rodriguez', 38525145, 'Etcheverry 14258', 1169632365, '2018-05-07'),
-	('Jose', 'Cuenca', 45852159, 'Belen 147', 1145202369, '2019-08-05'),
-	('Cristian', 'Perez', 95145258, 'Ameguino 7845', 1145202587, '2017-12-01'),
-	('Roberto', 'Pettinato', 22154784, 'Piedras 555', 1147852549, '2018-09-18');
+	( 1, 'Rosana', 'Ramirez', 38524874, 'Av. Libertador 888', 1147581956, '2020-05-10'),
+	( 1, 'Julian', 'Prieto', 31458741, 'Cordoba 9784', 1178459258, '2021-06-15'),
+	( 1, 'Florencia', 'Rancatti', 33562415, 'San Martin 111', 1148568525, '2020-02-22'),
+	( 1, 'Maria', 'Gomez', 37841595, '25 de Mayo 7418', 1178549526, '2021-11-02'),
+	( 1, 'Leonardo', 'Diaz', 37845159, 'Flores 2145', 1145781245, '2021-09-16'),
+	( 1, 'Camila', 'Rodriguez', 38525145, 'Etcheverry 14258', 1169632365, '2018-05-07'),
+	( 1, 'Jose', 'Cuenca', 45852159, 'Belen 147', 1145202369, '2019-08-05'),
+	( 1, 'Cristian', 'Perez', 95145258, 'Ameguino 7845', 1145202587, '2017-12-01'),
+	( 1, 'Roberto', 'Pettinato', 22154784, 'Piedras 555', 1147852549, '2018-09-18');
 
 
 
@@ -425,35 +512,25 @@ mes_facturado
 
 
 
-INSERT INTO centro_medico.duenos (
-nombre_dueno,
-apellido_dueno,
-dni_dueno,
-domicilio_dueno,
-telefono_dueno
-) VALUES
-	('Ricardo', 'Fariña', 26458457, 'Gral. Rosas 1525', 1145258877),
-	('Bernarda', 'Chela', 27410255, 'Corrientes 956', 1165255587),
-	('Adrian', 'Frenucci', 29545777, 'Cordoba 1144', 1123659545);
-
 
 
 
 INSERT INTO centro_medico.pacientes (
+id_centro_medico,
 nombre_paciente,
 apellido,
 dni,
 fecha_alta,
 estado
 ) VALUES
-	('Lucas', 'Martinez', 37412586, '2022-05-19', DEFAULT),
-	('Magali', 'Gutierrez', 39456789, '2023-09-12', DEFAULT),
-	('Lucia', 'Sosa', 34582569, '2023-11-27', DEFAULT),
-	('Carlos', 'Lopez', 34568598, '2022-07-22', DEFAULT),
-	('Marcos', 'Hernandez', 35852456, '2023-11-02', DEFAULT),
-	('Juliana', 'Cruz', 35852569, '2023-02-12', DEFAULT),
-	('Rocio', 'Sanchez', 38451595, '2022-08-22', DEFAULT),
-	('Alejandro', 'Diaz', 37456852, '2021-10-15', DEFAULT);
+	( 1, 'Lucas', 'Martinez', 37412586, '2022-05-19', DEFAULT),
+	( 1, 'Magali', 'Gutierrez', 39456789, '2023-09-12', DEFAULT),
+	( 1, 'Lucia', 'Sosa', 34582569, '2023-11-27', DEFAULT),
+	( 1, 'Carlos', 'Lopez', 34568598, '2022-07-22', DEFAULT),
+	( 1, 'Marcos', 'Hernandez', 35852456, '2023-11-02', DEFAULT),
+	( 1, 'Juliana', 'Cruz', 35852569, '2023-02-12', DEFAULT),
+	( 1, 'Rocio', 'Sanchez', 38451595, '2022-08-22', DEFAULT),
+	( 1, 'Alejandro', 'Diaz', 37456852, '2021-10-15', DEFAULT);
 
 
 
@@ -477,6 +554,7 @@ carnet_numero
 
 
 INSERT INTO centro_medico.medicos (
+id_centro_medico,
 nombre_medico,
 apellido_medico,
 cuit,
@@ -484,11 +562,11 @@ email,
 estado,
 fecha_alta
 ) VALUES
-	('Luciana', 'Murillo', 20284567845, 'luciana_murillo@gmail.com', DEFAULT, '2022-10-5'),
-	('Gloria', 'Acosta', 20254854575, 'gloria_acosta@gmail.com', DEFAULT, '2021-08-07'),
-	('Alexander', 'Ceballos', 20310254565, 'alexander_ceballos@gmail.com', DEFAULT, '2021-10-01'),
-	('Carlos', 'Maldonado', 20285154565, 'carlos_maldonado@gmail.com', DEFAULT, '2022-01-12'),
-	('Jessica', 'Prado', 20264591585, 'jessica_prado@gmail.com', DEFAULT, '2021-08-12');
+	( 1, 'Luciana', 'Murillo', 20284567845, 'luciana_murillo@gmail.com', DEFAULT, '2022-10-5'),
+	( 1, 'Gloria', 'Acosta', 20254854575, 'gloria_acosta@gmail.com', DEFAULT, '2021-08-07'),
+	( 1, 'Alexander', 'Ceballos', 20310254565, 'alexander_ceballos@gmail.com', DEFAULT, '2021-10-01'),
+	( 1, 'Carlos', 'Maldonado', 20285154565, 'carlos_maldonado@gmail.com', DEFAULT, '2022-01-12'),
+	( 1, 'Jessica', 'Prado', 20264591585, 'jessica_prado@gmail.com', DEFAULT, '2021-08-12');
 
 
 
@@ -556,20 +634,21 @@ fecha_registrada
 
 
 INSERT INTO centro_medico.tratamientos (
+id_centro_medico,
 id_medico,
 id_paciente,
 descripcion,
 fecha_inicio,
 fecha_fin
 ) VALUES
-	(1, 7, 'Paciente con ataques de panico a causa de perdida familiar.', '2022-08-28', NULL),
-	(2, 4, 'Paciente con problemas de aprendizaje, presenta distracciones y dificultad de atencion.', '2022-07-30', NULL),
-	(3, 1, 'Paciente con depresion diagnosticada, tratamiento en proceso mediante medicacion.', '2022-06-02', NULL),
-	(3, 2, 'Paciente con Epilepsia diagnosticada, tratamiento en proceso mediante medicacion.', '2023-09-26', NULL),
-	(5, 3, 'Paciente con dificultad psicomotriz, acompañamiento escolar permanente', '2024-01-05', NULL),
-	(2, 5, 'Paciente con dificultades de aprendizaje, presenta dificultad de memorizacion a corto plazo. ¡Diagnosticar!', '2023-11-19', NULL),
-	(4, 8, 'Paciente presenta sospechas de retraso en el lenguaje, ¡Diagnosticar!.', '2021-10-30', NULL),
-	(1, 6, 'Paciente presenta intenciones de autoflagelo con posibilidades de suicidio. ¡Es prioridad tratamiento en conjunto con el area de psiquiatria', '2023-02-25', NULL);
+	( 1, 1, 7, 'Paciente con ataques de panico a causa de perdida familiar.', '2022-08-28', NULL),
+	( 1, 2, 4, 'Paciente con problemas de aprendizaje, presenta distracciones y dificultad de atencion.', '2022-07-30', NULL),
+	( 1, 3, 1, 'Paciente con depresion diagnosticada, tratamiento en proceso mediante medicacion.', '2022-06-02', NULL),
+	( 1, 3, 2, 'Paciente con Epilepsia diagnosticada, tratamiento en proceso mediante medicacion.', '2023-09-26', NULL),
+	( 1, 5, 3, 'Paciente con dificultad psicomotriz, acompañamiento escolar permanente', '2024-01-05', NULL),
+	( 1, 2, 5, 'Paciente con dificultades de aprendizaje, presenta dificultad de memorizacion a corto plazo. ¡Diagnosticar!', '2023-11-19', NULL),
+	( 1, 4, 8, 'Paciente presenta sospechas de retraso en el lenguaje, ¡Diagnosticar!.', '2021-10-30', NULL),
+	( 1, 1, 6, 'Paciente presenta intenciones de autoflagelo con posibilidades de suicidio. ¡Es prioridad tratamiento en conjunto con el area de psiquiatria', '2023-02-25', NULL);
 	
 
 

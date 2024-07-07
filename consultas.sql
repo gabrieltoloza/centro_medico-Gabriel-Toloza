@@ -6,6 +6,18 @@ FROM centro_medico.empleados;
 
 SELECT 
 *
+FROM centro_medico.pacientes;
+
+SELECT 
+*
+FROM centro_medico.medicos;
+
+SELECT 
+*
+FROM centro_medico.tratamientos;
+
+SELECT 
+*
 FROM centro_medico.puestos;
 
 SELECT 
@@ -15,6 +27,15 @@ FROM centro_medico.empleados_puestos;
 SELECT 
 *
 FROM centro_medico.duenos;
+
+SELECT 
+*
+FROM centro_medico.centros_medicos;
+
+
+SELECT 
+*
+FROM centro_medico.RUP_registro_matriculas;
 
 
 -- JOIN para mostrar empleados y sus tareas.
