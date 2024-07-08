@@ -27,6 +27,7 @@
 | Tabla         | Columna           | Tipo de Datos                         |
 | ------------- | ----------------- |                                  ---: |
 | EMPLEADOS     | ID_EMPLEADO       | INT AUTO_INCREMENT NOT NULL           |
+|               | ID_CENTRO_MEDICO  | INT NOT NULL                          |
 |               | NOMBRE_EMPLEADO   | VARCHAR(255) NOT NULL                 |
 |               | APELLIDO_EMPLEADO | VARCHAR(255) NOT NULL                 |
 |               | DNI_EMPLEADO      | BIGINT UNIQUE NOT NULL                |
@@ -73,6 +74,7 @@
 | Tabla         | Columna           | Tipo de Datos                         |
 | ------------- | ----------------- |                                  ---: |
 | PACIENTES     | ID_PACIENTE       | INT AUTO_INCREMENT NOT NULL           |
+|               | ID_CENTRO_MEDICO  | INT NOT NULL                          |
 |               | NOMBRE_PACIENTE   | VARCHAR(255) NOT NULL                 |
 |               | APELLIDO          | VARCHAR(255) NOT NULL                 |
 |               | DNI               | BIGINT UNIQUE NOT NULL                |
@@ -93,6 +95,7 @@
 | Tabla         | Columna           | Tipo de Datos                         |
 | ------------- | ----------------- |                                  ---: |
 | MEDICOS       | ID_MEDICO         | INT AUTO_INCREMENT NOT NULL           |
+|               | ID_CENTRO_MEDICO  | INT NOT NULL                          |
 |               | NOMBRE_MEDICO     | VARCHAR(255) NOT NULL                 |
 |               | APELLIDO_MEDICO   | VARCHAR(255) NOT NULL                 |
 |               | CUIT              | BIGINT UNIQUE NOT NULL                |
@@ -137,6 +140,7 @@
 | Tabla         | Columna           | Tipo de Datos                         |
 | ------------- | ----------------- |                                  ---: |
 | TRATAMIENTOS  | ID_TRATAMIENTO    | INT AUTO_INCREMENT NOT NULL           |
+|               | ID_CENTRO_MEDICO  | INT NOT NULL                          |
 |               | ID_MEDICO         | INT NOT NULL                          |
 |               | ID_PACIENTE       | INT NOT NULL                          |
 |               | DESCRIPCION       | TEXT                                  |
