@@ -10,7 +10,7 @@ services:
       MYSQL_DATABASE: coderhouse_gamers
       MYSQL_ROOT_PASSWORD: germancitoquerido
     ports:
-      - 3307:3306
+      - 3309:3306
     volumes:
       - db_data:/var/lib/mysql
 
