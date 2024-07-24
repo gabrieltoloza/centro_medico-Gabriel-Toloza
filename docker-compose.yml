@@ -7,7 +7,7 @@ services:
     environment:
       MYSQL_USER: gabriel
       MYSQL_PASSWORD: germancitoquerido
-      MYSQL_DATABASE: coderhouse_gamers
+      MYSQL_DATABASE: centro_medico
       MYSQL_ROOT_PASSWORD: germancitoquerido
     ports:
       - 3309:3306
