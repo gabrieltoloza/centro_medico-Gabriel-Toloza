@@ -5,14 +5,6 @@ services:
   db:
     image: mysql
     environment:
-      MYSQL_USER: gabriel
       MYSQL_PASSWORD: germancitoquerido
-      MYSQL_DATABASE: centro_medico
-      MYSQL_ROOT_PASSWORD: germancitoquerido
     ports:
       - 3309:3306
-    volumes:
-      - db_data:/var/lib/mysql
-
-volumes:
-  db_data:
