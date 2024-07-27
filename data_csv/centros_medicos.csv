@@ -1,0 +1,4 @@
+id_dueno,nombre,direccion,email,telefono,ciudad,provincia,codigo_postal,sitio_web
+1,CentromedicoLorena,Cordoba255,centro_medico_lorena@gmail.com,02204528588,Merlo,BuenosAires,1722,www.centromedicolorena.com.ar
+2,CentromedicoOeste,Av.Rivadavia7558,oeste_centromedico@gmail.com,02204524567,SanAntoniodePadua,BuenosAires,1722,www.oestecentromedico.com.ar
+3,SaludMentalQuillinzo,O'brien1598,salud_mental_Quillinzo@gmail.com,03514568852,ValleCalamuchita,Cordoba,5196,www.quillinzo-salud-mental.com.ar

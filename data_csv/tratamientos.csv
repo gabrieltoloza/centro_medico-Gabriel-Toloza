@@ -1,0 +1,94 @@
+id_centro_medico,id_medico,id_paciente,descripcion,fecha_inicio,fecha_fin
+1,1,1,Paciente con problemas de ansiedad y depresion,2022-08-28
+2,2,2,Paciente con trastorno de deficit de atencion e hiperactividad,2022-07-30
+3,3,3,Paciente con insomnio cronico,2022-06-02
+1,4,4,Paciente con trastorno bipolar,2023-09-26
+2,5,5,Paciente con esquizofrenia,2024-01-05
+3,6,6,Paciente con trastorno obsesivo compulsivo,2023-11-19
+1,7,7,Paciente con fobia social,2021-10-30
+2,8,8,Paciente con anorexia nerviosa,2023-02-25
+3,9,9,Paciente con bulimia nerviosa,2022-12-15
+1,10,10,Paciente con trastorno de personalidad limite,2023-05-07
+2,11,11,Paciente con adiccion al juego,2022-09-18
+3,12,12,Paciente con adiccion al alcohol,2023-08-01
+1,13,13,Paciente con adiccion a opiaceos,2024-02-10
+2,14,14,Paciente con trastorno de estres postraumatico,2023-03-22
+3,15,15,Paciente con agorafobia,2022-11-05
+1,16,16,Paciente con trastorno disociativo,2023-07-14
+2,17,17,Paciente con trastorno de la alimentacion,2022-10-09
+3,18,18,Paciente con trastorno del sueño,2023-04-30
+1,19,19,Paciente con trastorno de adaptacion,2024-01-20
+2,20,20,Paciente con trastorno disforico,2023-06-11
+3,21,21,Paciente con trastorno de panico,2022-08-03
+1,22,22,Paciente con fobia especifica,2023-10-25
+2,23,23,Paciente con trastorno de ansiedad,2022-12-07
+3,24,24,Paciente con trastorno del control de impulsos,2023-09-16
+1,25,25,Paciente con trastorno del espectro autista,2024-03-01
+2,26,26,Paciente con demencia,2023-01-13
+3,27,27,Paciente con enfermedad de alzheimer,2022-07-19
+1,28,28,Paciente con trastorno de depresion mayor,2023-11-30
+2,29,29,Paciente con trastorno disforico premenstrual,2022-09-02
+3,30,30,Paciente con trastorno de identidad disociativo,2023-05-28
+1,31,31,Paciente con trastorno esquizoafectivo,2024-02-15
+2,32,32,Paciente con trastorno de la fluidez del inicio de la infancia,2023-08-09
+3,33,33,Paciente con trastorno de tics motores o vocales,2022-11-22
+1,34,34,Paciente con trastorno por consumo de cannabis,2023-04-05
+2,35,35,Paciente con trastorno por consumo de cafeina,2022-10-17
+3,36,36,Paciente con trastorno por consumo de tabaco,2023-07-01
+1,37,37,Paciente con trastorno por consumo de alucinogenos,2024-01-25
+2,38,38,Paciente con trastorno de aprendizaje,2023-03-14
+3,39,39,Paciente con trastorno de lectura o dislexia,2022-08-26
+1,40,40,Paciente con trastorno de expresion escrita,2023-06-18
+2,1,41,Paciente con trastorno de calculo o discalculia,2022-12-30
+3,2,42,Paciente con trastorno del desarrollo de la coordinacion,2023-09-11
+1,3,43,Paciente con trastorno de la expresion del lenguaje,2024-03-05
+2,4,44,Paciente con trastorno fonologico,2023-01-17
+3,5,45,Paciente con trastorno del lenguaje pragmatico,2022-07-23
+1,6,46,Paciente con trastorno de la fluidez de comienzo en la adultez,2023-11-04
+2,7,47,Paciente con trastorno de la comunicacion social,2022-09-06
+3,8,48,Paciente con trastorno por consumo de alcohol,2023-05-20
+1,9,49,Paciente con trastorno por consumo de opioides,2024-02-02
+2,10,50,Paciente con trastorno por consumo de sedantes,2023-08-13
+3,11,51,Paciente con trastorno por consumo de cocaina,2022-11-26
+1,12,52,Paciente con trastorno por consumo de anfetamina,2023-04-09
+2,13,53,Paciente con trastorno por consumo de inhalantes,2022-10-21
+3,14,54,Paciente con trastorno por juego de apuestas,2023-07-05
+1,15,55,Paciente con trastorno obsesivo compulsivo,2024-01-29
+2,16,56,Paciente con trastorno dismorfico corporal,2023-03-18
+3,17,57,Paciente con trastorno de acumulacion,2022-08-30
+1,18,58,Paciente con tricotilomania,2023-06-22
+2,19,59,Paciente con excoriacion compulsiva,2022-12-04
+3,20,60,Paciente con trastorno del estado de animo,2023-09-15
+1,21,61,Paciente con trastorno de panico,2024-03-09
+2,22,62,Paciente con agorafobia,2023-01-21
+3,23,63,Paciente con fobia especifica,2022-07-27
+1,24,64,Paciente con trastorno de ansiedad,2023-11-08
+2,25,65,Paciente con trastorno de ansiedad,2022-09-10
+3,26,66,Paciente con trastorno de ansiedad,2023-05-24
+1,27,67,Paciente con mutismo selectivo,2024-02-06
+2,28,68,Paciente con trastorno de ansiedad,2023-08-17
+3,29,69,Paciente con trastorno de ansiedad inducido por sustancias,2022-11-30
+1,30,70,Paciente con trastorno de ansiedad,2023-04-13
+2,31,71,Paciente con trastorno de estres agudo,2022-10-25
+3,32,72,Paciente con trastorno de estres postraumatico,2023-07-09
+1,33,73,Paciente con trastorno de adaptacion,2024-02-20
+2,34,74,Paciente con trastorno disociativo,2023-03-22
+3,35,75,Paciente con amnesia disociativa,2022-09-03
+1,36,76,Paciente con trastorno de despersonalizacion,2023-06-26
+2,37,77,Paciente con trastorno de identidad disociativo,2022-12-08
+3,38,78,Paciente con trastorno disociativo no especificado,2023-09-19
+1,39,79,Paciente con trastorno de sintomas somaticos,2024-03-13
+2,40,80,Paciente con trastorno facticio,2023-01-25
+3,1,81,Paciente con trastorno converso,2022-07-31
+1,2,82,Paciente con trastorno de ansiedad por enfermedad,2023-11-12
+2,3,83,Paciente con trastorno de la conducta alimentaria,2022-09-14
+3,4,84,Paciente con pica,2023-05-28
+1,5,85,Paciente con trastorno de rumiacion,2024-02-10
+2,6,86,Paciente con anorexia nerviosa,2023-08-21
+3,7,87,Paciente con bulimia nerviosa,2022-12-03
+1,8,88,Paciente con trastorno por atracones,2023-04-17
+2,9,89,Paciente con trastorno de la alimentacion,2022-10-29
+3,10,90,Paciente con insomnio,2023-07-13
+1,11,91,Paciente con hipersomnolencia,2024-02-24
+2,12,92,Paciente con narcolepsia,2023-03-26
+3,13,93,Paciente con apnea del sueño,2022-09-07

@@ -4,15 +4,20 @@ version: '3'
 services:
   db:
     image: mysql
+    container_name: centro_medico_mysql
     environment:
-      MYSQL_USER: gabriel
-      MYSQL_PASSWORD: germancitoquerido
-      MYSQL_DATABASE: centro_medico
-      MYSQL_ROOT_PASSWORD: germancitoquerido
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+    command: --local-infile=1
     ports:
       - 3309:3306
     volumes:
       - db_data:/var/lib/mysql
+      - ./data_csv:/data_csv
+      - ./script_sql:/script_sql
 
 volumes:
   db_data:
