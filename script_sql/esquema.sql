@@ -244,7 +244,10 @@ CREATE TABLE factura_medico (
 -- Constraints para la tabla "centros_medicos"
 -- Constraints para la tabla "centros_medicos"
 ALTER TABLE centro_medico.centros_medicos
-	ADD CONSTRAINT fk_duenos_id_dueno FOREIGN KEY (id_dueno) REFERENCES duenos(id_dueno);
+	ADD CONSTRAINT fk_duenos_id_dueno FOREIGN KEY (id_dueno) REFERENCES duenos(id_dueno)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -253,7 +256,10 @@ ALTER TABLE centro_medico.centros_medicos
 -- Constraints para la tabla "empleados"
 -- Constraints para la tabla "empleados"
 ALTER TABLE centro_medico.empleados
-	ADD CONSTRAINT fk_centros_medicos_empleado FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico);
+	ADD CONSTRAINT fk_centros_medicos_empleado FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -262,13 +268,19 @@ ALTER TABLE centro_medico.empleados
 -- Constraints para la tabla "pacientes"
 -- Constraints para la tabla "pacientes"
 ALTER TABLE centro_medico.pacientes
-	ADD CONSTRAINT fk_centros_medicos_pacientes FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico);
+	ADD CONSTRAINT fk_centros_medicos_pacientes FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
 -- Constraints para la tabla "medicos"
 ALTER TABLE centro_medico.medicos
-	ADD CONSTRAINT fk_centros_medicos_medicos FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico);
+	ADD CONSTRAINT fk_centros_medicos_medicos FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -276,10 +288,16 @@ ALTER TABLE centro_medico.medicos
 -- Constraints para la tabla "empleados_puestos"
 -- Constraints para la tabla "empleados_puestos"
 ALTER TABLE centro_medico.empleados_puestos
-	ADD CONSTRAINT FK_id_empleado FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado);
+	ADD CONSTRAINT FK_id_empleado FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 ALTER TABLE centro_medico.empleados_puestos
-	ADD CONSTRAINT FK_id_puesto FOREIGN KEY (id_puesto) REFERENCES puestos(id_puesto);
+	ADD CONSTRAINT FK_id_puesto FOREIGN KEY (id_puesto) REFERENCES puestos(id_puesto)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -289,7 +307,10 @@ ALTER TABLE centro_medico.empleados_puestos
 -- Constraints para la tabla "obra_social_empleados"
 -- Constraints para la tabla "obra_social_empleados"
 ALTER TABLE centro_medico.obra_social_empleados
-	ADD CONSTRAINT FK_id_empleado_obra_social FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado);
+	ADD CONSTRAINT FK_id_empleado_obra_social FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -298,7 +319,10 @@ ALTER TABLE centro_medico.obra_social_empleados
 -- Constraints para la tabla "honorario_facturas"
 -- Constraints para la tabla "honorario_facturas"
 ALTER TABLE centro_medico.honorario_facturas
-	ADD CONSTRAINT FK_honorario_facturas_id_empleado FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado);
+	ADD CONSTRAINT FK_honorario_facturas_id_empleado FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -307,7 +331,10 @@ ALTER TABLE centro_medico.honorario_facturas
 -- Constraints para la tabla "obra_social_pacientes"
 -- Constraints para la tabla "obra_social_pacientes"
 ALTER TABLE centro_medico.obra_social_pacientes
-	ADD CONSTRAINT FK_id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id_paciente);
+	ADD CONSTRAINT FK_id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id_paciente)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -315,10 +342,16 @@ ALTER TABLE centro_medico.obra_social_pacientes
 -- Constraints para la tabla "profesion_medicos"
 -- Constraints para la tabla "profesion_medicos"
 ALTER TABLE centro_medico.profesion_medicos
-	ADD CONSTRAINT FK_id_profesion FOREIGN KEY (id_profesion) REFERENCES profesiones(id_profesion);
+	ADD CONSTRAINT FK_id_profesion FOREIGN KEY (id_profesion) REFERENCES profesiones(id_profesion)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 	
 ALTER TABLE centro_medico.profesion_medicos
-	ADD CONSTRAINT FK_id_medico FOREIGN KEY (id_medico) REFERENCES medicos(id_medico);
+	ADD CONSTRAINT FK_id_medico FOREIGN KEY (id_medico) REFERENCES medicos(id_medico)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -326,7 +359,10 @@ ALTER TABLE centro_medico.profesion_medicos
 -- Constraint para la tabla "matriculas"
 -- Constraint para la tabla "matriculas"
 ALTER TABLE centro_medico.matriculas
-	ADD CONSTRAINT FK_MATRICULAS_id_medico FOREIGN KEY (id_medico) REFERENCES medicos(id_medico);
+	ADD CONSTRAINT FK_MATRICULAS_id_medico FOREIGN KEY (id_medico) REFERENCES medicos(id_medico)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -334,7 +370,10 @@ ALTER TABLE centro_medico.matriculas
 -- Constraint para la tabla "RUP_registro_matriculas"
 -- Constraint para la tabla "RUP_registro_matriculas"
 ALTER TABLE centro_medico.RUP_registro_matriculas 
-	ADD CONSTRAINT FK_id_matricula FOREIGN KEY (id_matricula) REFERENCES matriculas(id_matricula);
+	ADD CONSTRAINT FK_id_matricula FOREIGN KEY (id_matricula) REFERENCES matriculas(id_matricula)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 
 
@@ -343,13 +382,22 @@ ALTER TABLE centro_medico.RUP_registro_matriculas
 -- Constraints para la tabla "tratamientos"
 -- Constraints para la tabla "tratamientos"
 ALTER TABLE centro_medico.tratamientos
-	ADD CONSTRAINT FK_tratamientos_id_medico FOREIGN KEY (id_medico) REFERENCES medicos(id_medico);
+	ADD CONSTRAINT FK_tratamientos_id_medico FOREIGN KEY (id_medico) REFERENCES medicos(id_medico)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 	
 ALTER TABLE centro_medico.tratamientos
-	ADD CONSTRAINT FK_tratamientos_id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id_paciente);
+	ADD CONSTRAINT FK_tratamientos_id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id_paciente)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 ALTER TABLE centro_medico.tratamientos
-	ADD CONSTRAINT fk_centros_medicos_tratamientos FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico);
+	ADD CONSTRAINT fk_centros_medicos_tratamientos FOREIGN KEY (id_centro_medico) REFERENCES centro_medico.centros_medicos(id_centro_medico)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 	
 
 
@@ -358,10 +406,16 @@ ALTER TABLE centro_medico.tratamientos
 -- Constraints para la tabla "factura_paciente"
 -- Constraints para la tabla "factura_paciente"
 ALTER TABLE centro_medico.factura_paciente
-	ADD CONSTRAINT FK_facutra_paciente_id_tratamiento FOREIGN KEY (id_tratamiento) REFERENCES tratamientos(id_tratamiento);
+	ADD CONSTRAINT FK_facutra_paciente_id_tratamiento FOREIGN KEY (id_tratamiento) REFERENCES tratamientos(id_tratamiento)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 	
 ALTER TABLE centro_medico.factura_paciente
-	ADD CONSTRAINT FK_factura_paciente_id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id_paciente);
+	ADD CONSTRAINT FK_factura_paciente_id_paciente FOREIGN KEY (id_paciente) REFERENCES pacientes(id_paciente)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 	
 
 
@@ -370,7 +424,13 @@ ALTER TABLE centro_medico.factura_paciente
 -- Constraints de la tabla "factura_medico"
 -- Constraints de la tabla "factura_medico"
 ALTER TABLE centro_medico.factura_medico
-	ADD CONSTRAINT FK_factura_medico_id_medico FOREIGN KEY (id_medico) REFERENCES medicos(id_medico);
+	ADD CONSTRAINT FK_factura_medico_id_medico FOREIGN KEY (id_medico) REFERENCES medicos(id_medico)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;
 
 ALTER TABLE centro_medico.factura_medico
-	ADD CONSTRAINT FK_factura_medico_id_tratamiento FOREIGN KEY (id_tratamiento) REFERENCES tratamientos(id_tratamiento);
+	ADD CONSTRAINT FK_factura_medico_id_tratamiento FOREIGN KEY (id_tratamiento) REFERENCES tratamientos(id_tratamiento)
+	ON UPDATE CASCADE
+    ON DELETE CASCADE
+	;

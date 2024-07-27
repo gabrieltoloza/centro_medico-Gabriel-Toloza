@@ -82,8 +82,8 @@ SHOW WARNINGS;
 
 
 
--- importacion de registros de la tabla "obra_social_empleados"
--- importacion de registros de la tabla "obra_social_empleados"
+-- importacion de registros de la tabla "honorario_facturas"
+-- importacion de registros de la tabla "honorario_facturas"
 LOAD    DATA LOCAL INFILE './data_csv/honorario_facturas.csv'
         INTO TABLE honorario_facturas
             FIELDS TERMINATED   BY ',' ENCLOSED BY '"'
@@ -95,8 +95,8 @@ SHOW WARNINGS;
 
 
 
--- importacion de registros de la tabla "obra_social_empleados"
--- importacion de registros de la tabla "obra_social_empleados"
+-- importacion de registros de la tabla "pacientes"
+-- importacion de registros de la tabla "pacientes"
 LOAD    DATA LOCAL INFILE './data_csv/pacientes.csv'
         INTO TABLE pacientes
             FIELDS TERMINATED   BY ',' ENCLOSED BY '"'
