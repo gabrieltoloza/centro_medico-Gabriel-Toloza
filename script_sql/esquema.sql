@@ -434,3 +434,7 @@ ALTER TABLE centro_medico.factura_medico
 	ON UPDATE CASCADE
     ON DELETE CASCADE
 	;
+
+
+
+SHOW WARNINGS;
