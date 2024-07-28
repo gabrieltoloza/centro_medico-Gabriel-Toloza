@@ -162,7 +162,6 @@ CREATE TABLE matriculas (
 	id_matricula INT AUTO_INCREMENT NOT NULL,
 	id_medico INT NOT NULL,
 	numero_matricula BIGINT NOT NULL UNIQUE,
-	fecha_emitida DATE,
 	PRIMARY KEY (id_matricula)
 ) COMMENT "Tabla para almacenar las matriculas de los profesionales.";
 

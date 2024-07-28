@@ -2,9 +2,6 @@
 USE centro_medico;
 
 
-SET GLOBAL local_infile = true;
-
-
 
 
 -- importacion de registros de la tabla "duenos"
@@ -16,6 +13,7 @@ LOAD    DATA LOCAL INFILE './data_csv/duenos.csv'
             IGNORE 1 LINES
             (nombre_dueno, apellido_dueno, dni_dueno, domicilio_dueno, telefono_dueno);
 
+SELECT 'LA IMPORTACION DE duenos.csv TERMINO AQUI' AS mensaje;
 
 
 -- importacion de registros de la tabla "centros_medicos"
@@ -26,6 +24,8 @@ LOAD    DATA LOCAL INFILE './data_csv/centros_medicos.csv'
             LINES TERMINATED    BY '\n'
             IGNORE 1 LINES
             (id_dueno, nombre, direccion, email, telefono, ciudad, provincia, codigo_postal, sitio_web);
+
+SELECT 'LA IMPORTACION DE centros_medicos.csv TERMINO AQUI' AS mensaje;
 
 
 
@@ -39,6 +39,9 @@ LOAD    DATA LOCAL INFILE './data_csv/puestos.csv'
             IGNORE 1 LINES
             (nombre_puesto, honorario_mensual, descripcion_puesto);
 
+SELECT 'LA IMPORTACION DE puestos.csv TERMINO AQUI' AS mensaje;
+
+
 
 
 -- importacion de registros de la tabla "empleados"
@@ -49,6 +52,9 @@ LOAD    DATA LOCAL INFILE './data_csv/empleados.csv'
             LINES TERMINATED    BY '\n'
             IGNORE 1 LINES
             (id_centro_medico, nombre_empleado, apellido_empleado, dni_empleado, domicilio_empleado, telefono_empleado, fecha_alta);
+
+SELECT 'LA IMPORTACION DE empleados.csv TERMINO AQUI' AS mensaje;
+
 
 
 SHOW WARNINGS;
@@ -62,6 +68,9 @@ LOAD    DATA LOCAL INFILE './data_csv/empleados_puestos.csv'
             LINES TERMINATED    BY '\n'
             IGNORE 1 LINES
             (id_empleado, id_puesto);
+
+SELECT 'LA IMPORTACION DE empleados_puestos.csv TERMINO AQUI' AS mensaje;
+
 
 SHOW WARNINGS;
 
@@ -77,6 +86,9 @@ LOAD    DATA LOCAL INFILE './data_csv/obra_social_empleados.csv'
             IGNORE 1 LINES
             (id_empleado, nombre_obra_social, carnet_numero, fecha_alta);
 
+SELECT 'LA IMPORTACION DE obra_social_empleados.csv TERMINO AQUI' AS mensaje;
+
+
 SHOW WARNINGS;
 
 
@@ -90,6 +102,9 @@ LOAD    DATA LOCAL INFILE './data_csv/honorario_facturas.csv'
             LINES TERMINATED    BY '\n'
             IGNORE 1 LINES
             (id_empleado, mes_facturado);
+            
+SELECT 'LA IMPORTACION DE honorario_facturas.csv TERMINO AQUI' AS mensaje;
+
 
 SHOW WARNINGS;
 
@@ -103,6 +118,8 @@ LOAD    DATA LOCAL INFILE './data_csv/pacientes.csv'
             LINES TERMINATED    BY '\n'
             IGNORE 1 LINES
             (id_centro_medico, nombre_paciente, apellido, dni, fecha_alta, estado, tiene_obra_social);
+
+SELECT 'LA IMPORTACION DE pacientes.csv TERMINO AQUI' AS mensaje;
 
 SHOW WARNINGS;
 
@@ -118,6 +135,9 @@ LOAD    DATA LOCAL INFILE './data_csv/obra_social_pacientes.csv'
             IGNORE 1 LINES
             (id_paciente, nombre_obra_social_paciente, carnet_numero);
 
+SELECT 'LA IMPORTACION DE obra_social_pacientes.csv TERMINO AQUI' AS mensaje;
+
+
 SHOW WARNINGS;
 
 
@@ -132,6 +152,9 @@ LOAD    DATA LOCAL INFILE './data_csv/medicos.csv'
             IGNORE 1 LINES
             (id_centro_medico, nombre_medico, apellido_medico, cuit, email, estado, fecha_alta);
 
+SELECT 'LA IMPORTACION DE medicos.csv TERMINO AQUI' AS mensaje;
+
+
 SHOW WARNINGS;
 
 
@@ -144,6 +167,9 @@ LOAD    DATA LOCAL INFILE './data_csv/profesiones.csv'
             LINES TERMINATED    BY '\n'
             IGNORE 1 LINES
             (nombre_profesion);
+
+SELECT 'LA IMPORTACION DE profesiones.csv TERMINO AQUI' AS mensaje;
+
 
 SHOW WARNINGS;
 
@@ -159,6 +185,9 @@ LOAD    DATA LOCAL INFILE './data_csv/profesion_medicos.csv'
             IGNORE 1 LINES
             (id_medico, id_profesion);
 
+SELECT 'LA IMPORTACION DE profesion_medicos.csv TERMINO AQUI' AS mensaje;
+
+
 SHOW WARNINGS;
 
 
@@ -170,9 +199,14 @@ LOAD    DATA LOCAL INFILE './data_csv/matriculas.csv'
             FIELDS TERMINATED   BY ',' ENCLOSED BY '"'
             LINES TERMINATED    BY '\n'
             IGNORE 1 LINES
-            (id_medico, numero_matricula, fecha_emitida);
+            (id_medico, numero_matricula);
+
 
 SHOW WARNINGS;
+
+SELECT 'LA IMPORTACION DE matriculas.csv TERMINO AQUI' AS mensaje;
+
+
 
 
 
@@ -185,7 +219,11 @@ LOAD    DATA LOCAL INFILE './data_csv/RUP_registro_matriculas.csv'
             IGNORE 1 LINES
             (id_matricula, fecha_registrada);
 
+
 SHOW WARNINGS;
+
+SELECT 'LA IMPORTACION DE RUP_registro_matriculas.csv TERMINO AQUI' AS mensaje;
+
 
 
 
@@ -198,7 +236,10 @@ LOAD    DATA LOCAL INFILE './data_csv/tratamientos.csv'
             IGNORE 1 LINES
             (id_centro_medico, id_medico, id_paciente, descripcion, fecha_inicio, fecha_fin);
 
+
 SHOW WARNINGS;
+SELECT 'LA IMPORTACION DE tratamientos.csv TERMINO AQUI' AS mensaje;
+
 
 
 
@@ -211,7 +252,11 @@ LOAD    DATA LOCAL INFILE './data_csv/factura_medico.csv'
             IGNORE 1 LINES
             (id_medico, id_tratamiento, horas_trabajadas, monto, mes_facturado);
 
+
 SHOW WARNINGS;
+SELECT 'LA IMPORTACION DE factura_medico.csv TERMINO AQUI' AS mensaje;
+
+
 
 
 
@@ -225,6 +270,9 @@ LOAD    DATA LOCAL INFILE './data_csv/factura_paciente.csv'
             LINES TERMINATED    BY '\n'
             IGNORE 1 LINES
             (id_tratamiento, id_paciente, cuota, mes_facutado);
+
+SELECT 'LA IMPORTACION DE factura_paciente.csv TERMINO AQUI' AS mensaje;
+
 
 SHOW WARNINGS;
 
