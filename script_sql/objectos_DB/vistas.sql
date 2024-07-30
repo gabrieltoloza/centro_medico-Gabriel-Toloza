@@ -199,6 +199,8 @@ SELECT * FROM centro_medico.view_show_pacientes_obra_social;
 
 
 
+
+
 -- Vista para mostrar los tratamientos con sus pacientes y medicos respectivos.
 -- Vista para mostrar los tratamientos con sus pacientes y medicos respectivos.
 -- Vista para mostrar los tratamientos con sus pacientes y medicos respectivos.

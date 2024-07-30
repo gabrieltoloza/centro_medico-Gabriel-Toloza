@@ -10,8 +10,9 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      
 
-    command: --local-infile=1
+    command: --local-infile=1 --log-bin-trust-function-creators=1
     ports:
       - 3309:3306
     volumes:

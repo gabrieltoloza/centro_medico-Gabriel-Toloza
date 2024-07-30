@@ -203,7 +203,7 @@ CREATE TABLE factura_paciente (
 	id_tratamiento INT NOT NULL,
 	id_paciente INT NOT NULL,
 	cuota DECIMAL(12,2) NOT NULL,
-	mes_facutado DATE,
+	mes_facturado DATE,
 	PRIMARY KEY (id_factura_paciente)
 ) COMMENT "Tabla para facturar los servicios prestados por los Medicos";
 
