@@ -269,7 +269,7 @@ LOAD    DATA LOCAL INFILE './data_csv/factura_paciente.csv'
             FIELDS TERMINATED   BY ',' ENCLOSED BY '"'
             LINES TERMINATED    BY '\r\n'
             IGNORE 1 LINES
-            (id_tratamiento, id_paciente, cuota, mes_facutado);
+            (id_tratamiento, id_paciente, cuota, mes_facturado);
 
 SELECT 'LA IMPORTACION DE factura_paciente.csv TERMINO AQUI' AS mensaje;
 

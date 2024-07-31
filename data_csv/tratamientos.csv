@@ -1,4 +1,4 @@
-id_centro_medico,id_medico,id_paciente,descripcion,fecha_inicio,fecha_fin
+id_centro_medico,id_medico,id_paciente,descripcion,fecha_inicio
 1,1,1,Paciente con problemas de ansiedad y depresion,2022-08-28
 2,2,2,Paciente con trastorno de deficit de atencion e hiperactividad,2022-07-30
 3,3,3,Paciente con insomnio cronico,2022-06-02

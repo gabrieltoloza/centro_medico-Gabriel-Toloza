@@ -436,4 +436,60 @@ ALTER TABLE centro_medico.factura_medico
 
 
 
+
+
+
+
+
+
+
+
+-- "Tablas de auditoria: "
+-- "Tablas de auditoria: "
+-- "Tablas de auditoria: "
+
+
+-- Esta tabla servira para llevar control de la tabla "pacientes"
+
+
+DROP TABLE IF EXISTS centro_medico.alta_paciente_control;
+CREATE TABLE alta_paciente_control (
+	id_control INT NOT NULL AUTO_INCREMENT,
+	id_paciente INT NOT NULL,
+	nombres VARCHAR(255),
+	fecha_alta DATE,
+	obra_social VARCHAR(255) DEFAULT NULL,
+	PRIMARY KEY (id_control)
+) COMMENT 'Tabla para controlar la creacion de un paciente. Actua sobre la tabla "pacientes" .';
+
+
+
+-- Esta tabla servira para llevar control de la tabla "medicos"
+
+DROP TABLE IF EXISTS centro_medico.alta_medico_control;
+CREATE TABLE centro_medico.alta_medico_control (
+	id_control INT NOT NULL AUTO_INCREMENT,
+	id_medico INT NOT NULL,
+	full_name VARCHAR (255) NOT NULL,
+	cuit BIGINT,
+	profesion VARCHAR(255) DEFAULT NULL,
+	num_matricula BIGINT DEFAULT NULL,
+	email VARCHAR(255),
+	fecha_alta DATE,
+	PRIMARY KEY (id_control)
+) COMMENT 'Tabla para llevar un registro completo sin joins de los medicos registrados medicos.';
+
+
+
+
+
+DROP TABLE IF EXISTS centro_medico.auditoria_trigger;
+CREATE TABLE centro_medico.auditoria_trigger (
+	id_auditor INT NOT NULL AUTO_INCREMENT,
+	mensaje VARCHAR(255),
+	PRIMARY KEY (id_auditor)
+) COMMENT 'Tabla para llevar a cabo el control del descuento de la facturacion paciente.';
+
+
+
 SHOW WARNINGS;

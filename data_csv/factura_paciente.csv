@@ -1,4 +1,4 @@
-id_tratamiento,id_paciente,cuota,mes_facutado
+id_tratamiento,id_paciente,cuota,mes_facturado
 1,1,382000,2023-05-15
 2,2,295000,2024-02-15
 3,3,347000,2023-09-15

@@ -341,7 +341,7 @@ CREATE VIEW centro_medico.view_facturacion_tratamiento_paciente AS
 		END AS estado,
 		t.descripcion,
 		fp.cuota,
-		fp.mes_facutado,
+		fp.mes_facturado,
 		t.fecha_fin
 	FROM centro_medico.obra_social_pacientes AS osp
 	JOIN centro_medico.pacientes AS p
@@ -356,6 +356,3 @@ CREATE VIEW centro_medico.view_facturacion_tratamiento_paciente AS
     -- Usando vista "view_facturacion_tratamiento_paciente"
     -- Usando vista "view_facturacion_tratamiento_paciente"
 SELECT * FROM centro_medico.view_facturacion_tratamiento_paciente;
-	
-
-
