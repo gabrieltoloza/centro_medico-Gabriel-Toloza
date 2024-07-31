@@ -239,6 +239,7 @@ BEGIN
 	
 	DECLARE check_id_medico INT;
 	DECLARE check_id_tratamiento INT;
+	DECLARE monto_descuento DECIMAL(10,2);
 
 	-- Checkeando si existe el id_medico:
 	SELECT m.id_medico INTO check_id_medico
@@ -305,6 +306,8 @@ BEGIN
 	
 	DECLARE check_id_paciente INT;
 	DECLARE check_id_tratamiento INT;
+	DECLARE check_obra_social VARCHAR(255);
+	DECLARE precio_final DECIMAL(12,2);
 
 	-- Checkeando si existe el id_paciente
 	SELECT p.id_paciente INTO check_id_paciente
@@ -315,6 +318,17 @@ BEGIN
 	SELECT trat.id_tratamiento INTO check_id_tratamiento
 	FROM centro_medico.stagging_tratamientos AS trat
 	WHERE trat.id_tratamiento = tratamiento_id;
+
+	-- Checkeando si tiene obra social
+	SELECT osp.nombre_obra_social_paciente INTO check_obra_social
+	FROM centro_medico.stagging_obra_social_pacientes AS osp
+	WHERE osp.id_paciente = check_id_paciente;
+
+	SET precio_final = CASE
+							WHEN check_obra_social IS NULL THEN cuota_mensual
+							ELSE 
+								DISCOUNT_OS(cuota_mensual, check_obra_social)
+						END;
 	
 	IF check_id_paciente IS NULL THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No pudo encontrarse el registro del paciente';
@@ -324,11 +338,29 @@ BEGIN
 		INSERT INTO centro_medico.stagging_factura_paciente
 			(id_tratamiento, id_paciente, cuota, mes_facutado)
 		VALUES
-			(check_id_tratamiento, check_id_paciente, cuota_mensual, factura_mes);
+			(check_id_tratamiento, check_id_paciente, precio_final, factura_mes);
+		
+		IF precio_final = cuota_mensual THEN 
+				INSERT INTO centro_medico.stagging_auditoria_trigger
+					(mensaje)
+				VALUES
+					(CONCAT('No se aplico un descuenot a la factura del paciente con el id: ', paciente_id, ' Cuota: ', precio_final));
+		ELSE
+			INSERT INTO centro_medico.stagging_auditoria_trigger
+				(mensaje)
+			VALUES
+				(CONCAT('Se aplico el descuento paciente con el id: ', paciente_id, ' Cuota: ', precio_final, ', con la obra social ', check_obra_social));
+		END IF;
+		SELECT *
+		FROM centro_medico.stagging_factura_paciente AS fp
+		WHERE fp.id_paciente = check_id_paciente;
 	END IF;
+
 
 END //
 DELIMITER ;
+
+
 
 
 	-- "Usando procedimiento 'generar_factura_paciente"
@@ -336,3 +368,72 @@ DELIMITER ;
 CALL centro_medico.generar_factura_paciente( 1, 1 , 380000.00, '2024-07-30')
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Este procedimiento finaliza el tratamiento y actualiza el estado del medico y paciente asociado. Cambia de true/Activo a falso/Inactivo.
+-- Este procedimiento finaliza el tratamiento y actualiza el estado del medico y paciente asociado. Cambia de true/Activo a falso/Inactivo.
+-- Este procedimiento finaliza el tratamiento y actualiza el estado del medico y paciente asociado. Cambia de true/Activo a falso/Inactivo.
+
+DROP PROCEDURE IF EXISTS centro_medico.terminar_tratamiento;
+DELIMITER //
+
+CREATE PROCEDURE centro_medico.terminar_tratamiento
+(
+	IN id_medico INT,
+	IN id_paciente INT
+)
+BEGIN
+	DECLARE check_id_tratamiento INT;
+	DECLARE check_id_paciente INT;
+	DECLARE check_id_medico INT;
+
+	-- Checkeando si existe el paciente en la tabla tratamientos.
+	SELECT st.id_medico INTO check_id_medico
+	FROM centro_medico.stagging_tratamientos AS st
+	WHERE st.id_medico = id_medico;
+
+	-- Checkeando si existe el paciente en la tabla tratamientos.
+	SELECT st.id_paciente INTO check_id_paciente
+	FROM centro_medico.stagging_tratamientos AS st
+	WHERE st.id_paciente = id_paciente;
+
+	IF check_id_paciente IS NULL OR check_id_medico IS NULL THEN 
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se pudo finalizar el tratamiento.';
+	ELSE
+		UPDATE centro_medico.stagging_medicos 
+		SET estado = 0
+		WHERE id_medico = check_id_medico;
+	
+		UPDATE centro_medico.stagging_pacientes 
+		SET estado = 0
+		WHERE id_paciente = check_id_paciente;
+		
+		SELECT 'Tratamiento finalizado' AS mensaje;
+	END IF;
+	
+END //
+DELIMITER ;
+
+
+
+	-- " Usando procedimiento 'terminar_tratamineto' ":
+	-- " Usando procedimiento 'terminar_tratamineto' ":
+	CALL centro_medico.terminar_tratamiento(1,1);

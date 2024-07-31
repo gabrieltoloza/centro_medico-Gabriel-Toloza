@@ -1,0 +1,229 @@
+
+
+    // PROCEDIMIENTOS - PROCEDIMIENTOS - PROCEDIMIENTOS - PROCEDIMIENTOS
+    // PROCEDIMIENTOS - PROCEDIMIENTOS - PROCEDIMIENTOS - PROCEDIMIENTOS
+    // PROCEDIMIENTOS - PROCEDIMIENTOS - PROCEDIMIENTOS - PROCEDIMIENTOS
+    // PROCEDIMIENTOS - PROCEDIMIENTOS - PROCEDIMIENTOS - PROCEDIMIENTOS
+
+
+
+1. Registro de nuevo paciente:
+   Un procedimiento que tome los datos del paciente, verifique si ya existe, y si no, lo inserte en 
+   la tabla 'pacientes' y opcionalmente en 'obra_social_pacientes' si tiene obra social.               <------  COMPLETADO
+
+2. Asignación de tratamiento:
+   Un procedimiento que registre un nuevo tratamiento, vinculando un paciente con un médico y 
+   un centro médico específico.
+
+3. Facturación mensual:
+   Un procedimiento que genere las facturas mensuales para pacientes y médicos basándose en 
+   los tratamientos activos.
+
+4. Actualización de estado de médico:
+   Un procedimiento para cambiar el estado de un médico (activo/inactivo) y actualizar 
+   la fecha correspondiente.
+
+5. Cálculo de honorarios de empleados:
+   Un procedimiento que calcule los honorarios mensuales de los empleados basándose en 
+   sus puestos y genere los registros en 'honorario_facturas'.
+
+6. Registro de nueva matrícula:
+   Un procedimiento que registre una nueva matrícula para un médico y automáticamente cree el 
+   registro correspondiente en 'RUP_registro_matriculas'.
+
+7. Asignación de puesto a empleado:
+   Un procedimiento que asigne un nuevo puesto a un empleado, actualizando la tabla 'empleados_puestos'.
+
+8. Reporte de tratamientos por centro médico:
+   Un procedimiento que genere un resumen de los tratamientos activos por centro médico 
+   en un período específico.
+
+9. Actualización de obra social de paciente:
+   Un procedimiento que actualice o agregue información de obra social para un paciente 
+   existente.
+
+10. Cálculo de ingresos por centro médico:
+    Un procedimiento que calcule los ingresos totales de un centro médico basándose en 
+    las facturas de pacientes en un período determinado.
+
+
+
+Estos Stored Procedures pueden ayudar a encapsular lógica de negocio compleja, mejorar la 
+consistencia de los datos y optimizar operaciones frecuentes en la base de datos del centro médico.
+
+
+
+
+
+
+
+
+        //  TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS 
+        //  TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS 
+        //  TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS 
+        //  TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS - TRIGGERS
+
+
+
+
+
+1. Tabla `pacientes`:
+   - Trigger después de insertar un nuevo paciente
+   - Si el paciente tiene obra social, llama al procedimiento para registrar la obra social
+
+
+2. Tabla `tratamientos`:
+   - Trigger después de insertar un nuevo tratamiento
+   - Actualiza el estado del médico asociado a activo
+
+
+3. Tabla `medicos`:
+   - Trigger antes de actualizar un médico
+   - Si se cambia el estado del médico, actualiza la fecha de alta
+
+
+4. Tabla `empleados_puestos`:
+   - Trigger después de asignar un nuevo puesto a un empleado
+   - Llama al procedimiento para calcular los honorarios del empleado
+
+
+5. Tabla `matriculas`:
+   - Trigger después de insertar una nueva matrícula
+   - Crea automáticamente un registro en la tabla RUP_registro_matriculas
+
+
+6. Tabla `factura_paciente`:
+   - Trigger después de insertar una nueva factura de paciente
+   - Llama al procedimiento para calcular los ingresos del centro médico
+
+
+7. Tabla `obra_social_pacientes`:
+   - Trigger después de insertar una nueva obra social para un paciente
+   - Actualiza el campo 'tiene_obra_social' en la tabla pacientes
+
+
+8. Tabla `factura_medico`:
+   - Trigger antes de insertar una nueva factura de médico
+   - Calcula automáticamente el monto basado en las horas trabajadas y el honorario mensual
+
+
+9. Tabla `empleados`:
+   - Trigger después de insertar un nuevo empleado
+   - Inicia el proceso de asignación de puesto y cálculo de honorarios
+
+
+10. Tabla `centros_medicos`:
+    - Trigger después de insertar un nuevo centro médico
+    - Inicializa los registros necesarios en otras tablas relacionadas
+
+
+11. Tabla `profesion_medicos`:
+    - Trigger después de asignar una nueva profesión a un médico
+    - Actualiza la información relacionada en la tabla de médicos
+
+
+12. Tabla `honorario_facturas`:
+    - Trigger después de generar una factura de honorarios
+    - Actualiza los registros financieros del centro médico
+
+
+
+Estos triggers conceptuales se integran con los procedimientos almacenados para mantener la consistencia de los datos, 
+automatizar procesos y asegurar que las operaciones en la base de datos del centro médico se realicen de manera eficiente y precisa.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      Para aprovechar mejor los Stored Procedures (SP) y los triggers, y desarrollar una 
+      lógica más eficiente, te sugiero el siguiente enfoque:
+      ---------------------------------------------------------------------------------------
+
+
+
+1. Enfoque por dominio funcional:
+   - Agrupa las tablas y operaciones relacionadas (por ejemplo, gestión de pacientes, facturación, gestión de médicos).
+   - Desarrolla SP y triggers para cada dominio, asegurando que trabajen en conjunto.
+
+2. Implementación gradual:
+   - Comienza con las tablas y operaciones más críticas o frecuentes.
+   - Implementa SP y triggers para estas áreas primero, luego expande.
+
+3. Separación de responsabilidades:
+   - Usa SP para lógica de negocio compleja y operaciones que involucren múltiples tablas.
+   - Utiliza triggers para mantener la integridad de datos y realizar actualizaciones automáticas en una sola tabla.
+
+4. Considera el flujo de datos:
+   - Analiza cómo los datos fluyen entre tablas y procesos.
+   - Implementa SP y triggers que complementen este flujo natural.
+
+5. Optimización de rendimiento:
+   - Usa SP para operaciones que requieren múltiples pasos o cálculos complejos.
+   - Utiliza triggers para actualizaciones inmediatas y mantenimiento de consistencia.
+
+6. Manejo de errores y logging:
+   - Implementa manejo de errores en SP.
+   - Usa triggers para registrar cambios críticos o auditorías.
+
+7. Evita la sobrecarga:
+   - No sobrecargues las tablas con demasiados triggers.
+   - Mantén los SP enfocados en tareas específicas.
+
+8. Pruebas integradas:
+   - Desarrolla y prueba SP y triggers relacionados juntos.
+   - Asegúrate de que funcionen correctamente en diferentes escenarios.
+
+9. Documentación:
+   - Documenta la interacción entre SP y triggers.
+   - Mantén un registro claro de qué hace cada objeto y cómo se relacionan.
+
+10. Revisión y refactorización:
+    - Revisa periódicamente la lógica implementada.
+    - Refactoriza cuando sea necesario para mantener la eficiencia.
+
+
+
+      Ejemplo de implementación por sector:
+      Ejemplo de implementación por sector:
+      Ejemplo de implementación por sector:
+      
+
+1. Gestión de Pacientes:
+   - SP: registrar_nuevo_paciente, actualizar_informacion_paciente
+   - Triggers: después de insertar paciente (para obra social), después de actualizar paciente
+
+2. Gestión de Tratamientos:
+   - SP: asignar_tratamiento, finalizar_tratamiento
+   - Triggers: después de insertar tratamiento (para actualizar estado médico)
+
+3. Facturación:
+   - SP: generar_factura_mensual, calcular_ingresos_centro
+   - Triggers: después de insertar factura (para actualizar totales)
+
+4. Gestión de Médicos:
+   - SP: registrar_nuevo_medico, actualizar_estado_medico
+   - Triggers: antes de actualizar médico (para fecha de alta)
+
+
+
+
+
+      ---------------------------------------------------------------------------------------
+
+Este enfoque te permite concentrarte en un área funcional a la vez, asegurando que los SP y triggers 
+trabajen en armonía para cada sector del sistema. Recuerda siempre considerar el impacto en el rendimiento 
+y la mantenibilidad al implementar estos objetos de base de datos.
