@@ -167,7 +167,7 @@ BEGIN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se pudo encontrar el registro del tratamiento';
 	ELSE
 		INSERT INTO centro_medico.factura_paciente
-			(id_tratamiento, id_paciente, cuota, mes_facutado)
+			(id_tratamiento, id_paciente, cuota, mes_facturado)
 		VALUES
 			(check_id_tratamiento, check_id_paciente, precio_final, factura_mes);
 		
