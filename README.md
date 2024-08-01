@@ -586,6 +586,41 @@ ___
 > ## TRIGGERS
 
 > * "insertar_RUP_matricula"
-```sql
-   CALL centro_medico.generar_factura_paciente( 128, 128 , 380000.00, '2024-07-30');
-```
+
+>Este trigger se encarga de registrar la nueva matricula de un medico en la tabla " RUP_registro_,matriculas" esta tabla simula un registro que validaria la existencia de las matriculas de los medicos.
+>Actua sobre la tabla ---> "matriculas"
+___
+
+> * "alta_tratamiento_controller"
+
+>Este trigger controla actualiza el estado del paciente y medico, de false a true, que se registraron en el momento que se ejecuta el alta del tratamiento. 
+>Actua sobre la tabla ---> "tratamientos". 
+>Este estado indica si esta inactivo o en tratamiento cualquiera de las dos entidades.
+___
+
+> * "alta_paciente_controller"
+
+>Este trigger crea un registro para controlar las inserciones en la tabla "pacientes". 
+>Se crea un registro en la tabla "alta_paciente_control".
+___
+
+> * "alta_paciente_controller_OS"
+
+>Este trigger controla la obra social de los pacientes en la tabla auditora, si el nuevo registro en "obra_social_pacientes" se encuentra
+>en la tabla auditora esta actualiza el campo obra_social del mismo id correspondiente.
+___
+
+> * "alta_medico_controller"
+
+>Este trigger inserta los datos relevantes del registro creado , medico, y lo inserta en la tabla auditora de medicos "alta_medico_control"
+___
+
+> * "alta_medico_controller_matricula"
+
+>Este trigger se encarga de vincular la matricula del medico recien creado o matricula insertada, y lo registra en la tabla auditoria de medicos "alta_medico_control"
+___
+
+> * "alta_medico_controller_profesion"
+
+>Este trigger se encarga de vincular la profesion a la tabla auditoria de medicos "alta_medico_control".
+>Busca la profesion y actualiza el registro.
