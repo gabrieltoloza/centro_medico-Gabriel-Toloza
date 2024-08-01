@@ -14,7 +14,7 @@
 ## Listado de tablas y descripcion
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | DUEÑOS        | ID_DUEÑO          | INT AUTO_INCREMENT NOT NULL           |
 |               | NOMBRE_DUEÑO      | VARCHAR(255) NOT NULL                 |
 |               | APELLIDO_DUEÑO    | VARCHAR(255) NOT NULL                 |
@@ -25,7 +25,7 @@
 > -
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | EMPLEADOS     | ID_EMPLEADO       | INT AUTO_INCREMENT NOT NULL           |
 |               | ID_CENTRO_MEDICO  | INT NOT NULL                          |
 |               | NOMBRE_EMPLEADO   | VARCHAR(255) NOT NULL                 |
@@ -37,7 +37,7 @@
 
 
 | Tabla         | Columna            | Tipo de Datos                         |
-| ------------- | ------------------ |                                  ---: |
+| - |  |                                  : |
 | PUESTOS       | ID_PUESTO          | INT AUTO_INCREMENT NOT NULL           |
 |               | NOMBRE_PUESTO      | VARCHAR(255) NOT NULL                 |
 |               | HONORARIO_MENSUAL  | VARCHAR(255) NOT NULL                 |
@@ -46,7 +46,7 @@
 ### Tabla intermedia entre entidad Empleados/Puestos
 
 | Tabla             | Columna            | Tipo de Datos                |
-| ----------------- | ------------------ |                         ---: |
+| -- |  |                         : |
 | EMPLEADOS_PUESTOS | ID_EMPLEADO        | INT NOT NULL                 |
 |                   | ID_PUESTO          | INT NOT NULL                 |
 
@@ -54,7 +54,7 @@
 > -
 
 | Tabla         | Columna            | Tipo de Datos                         |
-| ------------- | ------------------ |                                  ---: |
+| - |  |                                  : |
 | OBRA          | ID_OS_EMPLEADO     | INT AUTO_INCREMENT NOT NULL           |
 | SOCIAL        | ID_EMPELADO        | INT NOT NULL                          |
 | EMPLEADOS     | NOMBRE_OB_EMPLEADO | VARCHAR(255) NOT NULL                 |
@@ -64,7 +64,7 @@
 
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | HONORARIO     | ID_HONORARIO      | INT AUTO_INCREMENT NOT NULL           |
 | FACTURAS      | ID_EMPLEADO       | INT NOT NULL                          |
 |               | MES_FACTURADO     | DATE                                  |
@@ -72,7 +72,7 @@
 
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | PACIENTES     | ID_PACIENTE       | INT AUTO_INCREMENT NOT NULL           |
 |               | ID_CENTRO_MEDICO  | INT NOT NULL                          |
 |               | NOMBRE_PACIENTE   | VARCHAR(255) NOT NULL                 |
@@ -84,7 +84,7 @@
 
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | OBRA          | ID_OS_PACIENTES   | INT AUTO_INCREMENT NOT NULL           |
 | SOCIAL        | ID_PACIENTE       | INT NOT NULL                 |
 | PACIENTES     | NOMBRE_OSOCIAL    | VARCHAR(255) NOT NULL                 |
@@ -93,7 +93,7 @@
 > -
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | MEDICOS       | ID_MEDICO         | INT AUTO_INCREMENT NOT NULL           |
 |               | ID_CENTRO_MEDICO  | INT NOT NULL                          |
 |               | NOMBRE_MEDICO     | VARCHAR(255) NOT NULL                 |
@@ -106,21 +106,21 @@
 
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | PROFESIONES   | ID_PROFESION      | INT AUTO_INCREMENT NOT NULL           |
 |               | NOMBRE_PROFESION  | VARCHAR(255) NOT NULL                 |
 
 ### Tabla intermedia entre la entidad Medicos/Profesiones
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | PROFESIONES   | ID_PROFESION      | INT NOT NULL                          |
 | MEDICOS       | ID_MEDICO         | INT NOT NULL                          |
 
 > -
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | MATRICULAS    | ID_MATRICULA      | INT AUTO_INCREMENT NOT NULL           |
 |               | ID_MEDICO         | INT NOT NULL                          |
 |               | NUMERO_MATRICULA  | BIGINT UNIQUE NOT NULL                |
@@ -129,7 +129,7 @@
 
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | R.U.P         | ID_REGISTRO       | INT AUTO_INCREMENT NOT NULL           |
 | REGISTRO      | ID_MATRICULA      | VARCHAR(255) NOT NULL                 |
 | MATRICULAS    | FECHA_ALTA        | DATE                                  |
@@ -138,7 +138,7 @@
 
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | TRATAMIENTOS  | ID_TRATAMIENTO    | INT AUTO_INCREMENT NOT NULL           |
 |               | ID_CENTRO_MEDICO  | INT NOT NULL                          |
 |               | ID_MEDICO         | INT NOT NULL                          |
@@ -150,7 +150,7 @@
 
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | FACTURA       | ID_FAC_PACIENTE   | INT AUTO_INCREMENT NOT NULL           |
 | PACIENTE      | ID_TRATAMIENTO    | INT NOT NULL                          |
 |               | ID_PACIENTE       | INT NOT NULL                          |
@@ -161,7 +161,7 @@
 
 
 | Tabla         | Columna           | Tipo de Datos                         |
-| ------------- | ----------------- |                                  ---: |
+| - | -- |                                  : |
 | FACTURA       | ID_FAC_MEDICO     | INT AUTO_INCREMENT NOT NULL           |
 | MEDICO        | ID_MEDICO(fk)     | INT NOT NULL                          |
 |               | ID_TRATAMIENTO    | INT NOT NULL                          |
@@ -254,7 +254,7 @@
 >
 >
 ___
----
+
 > 
 > * "view_show_empleados_all_data"
 ```sql
@@ -273,7 +273,7 @@ ___
 >                       * obra_social_empleados
 >                       * centros_medicos
 ___
----
+
 
 > * "view_show_empleados_facturaciones"
 ```sql
@@ -294,7 +294,7 @@ ___
 >                         * empleados_puestos
 >                         * puestos
 ___
----
+
 
 > * "view_show_empleados_obras_sociales"
 ```sql
@@ -314,7 +314,7 @@ ___
 >                       * empleados
 >                       * obra_social_empleados
 ___
----
+
 
 > * "view_show_pacientes_obra_social"
 ```sql
@@ -332,7 +332,7 @@ ___
 >                       * pacientes
 >                       * obra_social_pacientes
 ___
----
+
 
 > * "view_show_tratamientos_main"
 ```sql
@@ -356,7 +356,7 @@ ___
 >                       * profesion_medicos
 >                       * profesiones
 ___
----
+
 
 > * "view_show_medicos_full_data"
 ```sql
@@ -376,7 +376,7 @@ ___
 >                       * matriculas
 >                       * RUP_registro_matriculas
 ___
----
+
 
 > * "view_facturacion_tratamiento_medico"
 ```sql
@@ -397,7 +397,7 @@ ___
 >                       * tratamientos
 >                       * factura_medico
 ___
----
+
 
 > * "view_facturacion_tratamiento_paciente"
 ```sql
@@ -417,4 +417,175 @@ ___
 >                       * tratamientos
 >                       * factura_medico
 ___
----
+
+
+> ## Funciones:
+
+> * "sumar_IVA_21()"
+```sql
+    sumar_IVA_21(FLOAT)
+```
+>
+>
+>Funcion que devuelva el honorario de los medicos con IVA, la funcion seria aplicar el IVA a el campo seleccionado. (valor x 1,21 (21% impuesto)) <--Version corta
+>                              (valor x "porcentaje a sumar" / 100 ) <--version larga
+>
+>Esta funcion servirá a la hora de pagar algun salario a monostributistas o al gestionar algun costo/gasto que tenga que ver con insumos.
+
+___
+
+> * "CAPITALIZE()"
+```sql
+    CAPITALIZE(VARCHAR)
+```
+>Funcion que devuelva el primer caracter en mayusculas siempre. ( Capitalize). Servira para que no haya problemas de keysensitive si es que necesitamos que el primer caracter este en mayusculas. Pocos casos de usos.
+
+___
+
+> * "ACTIVE_INACTIVE()"
+```sql
+    ACTIVE_INACTIVE(BOOLEAN)
+```
+>
+>
+>Funcion para dar alta o baja a un booleano. Servira para cambiar el campo "estado" de activo/inactivo
+
+___
+
+> * "DISCOUNT_OS()"
+```sql
+    DISCOUNT_OS(VARCHAR) 
+```
+>
+>
+>Funcion para aplicar descuento a una facturacion de servicio segun obra social. Esto se usara en facturacion de pacientes para aplicar descuento segun obra social. Recibe como parametro la obra social. Dentro de su cuerpo estan definidas las obras sociales permitidas. Esto puede optimizarse en un futuro.
+
+> ## Procedimientos:
+
+> * "alta_paciente"
+```sql
+    CALL centro_medico.alta_paciente (3, 'Rosalia', 'Verdebuena', 30551597, '2024-07-28', 0, 'VITAL', 745159);
+```
+>Procedimiento que se encarga de registrar un nuevo paciente deben indicarse 8 (ocho) argumentos que corresponden a los campos:
+
+>           * id_centro_medico
+>           * nombre
+>           * apellido
+>           * documento
+>           * fecha_alta('YYYY-MM-DD')
+>           * estado(boolean)
+>           * nombre_obra_social(si el paciente no tiene se ingresa '')
+>           * numero_carnet(si el paciente no tiene se ingresa 0)
+
+>Si los dos ultimos argumentos se ingresan en vacio y 0 solamente se crea el registro del paciente con un boleano en falso que indica que no tiene obra social. Si los dos ultimos argumentos tienen informacion se crea el registro pacientes y tambien se crea un registro vinculando el id del paciente y los datos del nombre y carnet de obra social en la tabla obra_social_paciente.
+
+> ##### ¡ IMPORTANTE !
+> Ejemplo paciente <b>sin</b> obra social:
+```sql
+-- Ingresamos el campo obra social vacio '' y el campo numero carnet en 0:
+CALL centro_medico.alta_paciente (1, 'Julia', 'Gomez', 30123777, '2024-07-28', 0, '', 0);
+```
+> Ejemplo paciente <b>con</b> obra social:
+```sql
+-- Ingresamos el registro como el ejemplo anterior pero esta vez con obra social y numero carnet
+CALL centro_medico.alta_paciente (3, 'Rosalia', 'Verdebuena', 30551597, '2024-07-28', 0, 'VITAL', 745159);
+```
+
+___
+
+> * "alta_medico"
+```sql
+    CALL centro_medico.alta_medico( 3, 'Julieta', 'Ruiz', 25141547444, 'JulietaRuiz@gmail.com', 0, DATE(CURRENT_DATE), 'Psicologia', 44785450);
+```
+
+>Procedimiento que se encarga de registrar un nuevo medico, vincularlo a una profesion existente de la base de datos y a su vez registrar su matricula en la tabla matriculas. El procedimiento tiene 9 (nueve) parametros que corresponden a los campos:
+
+>           * id_centro_medico
+>           * nombre
+>           * apellido
+>           * cuit
+>           * email
+>           * status(boolean)
+>           * fecha_ingresado('YYYY-MM-DD')
+>           * profesion
+>           * numero_matricula
+
+>Este procedimiento actua sobre la tabla medicos, profesion_medicos y matriculas. Si sale todo ok. Esto dispara un trigger que registra esta matricula en la tabla RUP que seria el validador de las matriculas.
+___
+
+> * "alta_tratamiento"
+```sql
+    CALL centro_medico.alta_tratamiento(1, 64, 128, 'Esto es una descripcion para el tratamiento. ', '2024-07-29', NULL );
+```
+> ##### ¡ IMPORTANTE !
+> Si el campo de fecha_fin esta definido debe colocarlo, si no tiene fecha de finalizacion todavia, debe ingresar manualmente "NULL" como en el ejemplo anterior.
+
+> Este procedimiento se encarga de registrar un nuevo tratamiento. Recibe 6 (seis) parametros que corresponden a los campos:
+
+>           * id_centro_medico
+>           * id_medico
+>           * id_paciente
+>           * detalle
+>           * fecha_inicio
+>           * fehca_fin(si no finalizo se ingresa null manualmente)
+
+>Este proceso involucra a la tabla Tratamientos, Medicos, Pacientes.
+
+>Este proceso al finalizar dispara un trigger que se encargara de actualizar el estado del paciente y medico involucrado a "En tratamiento".
+
+___
+
+
+> * "terminar_tratamiento"
+```sql
+   CALL centro_medico.terminar_tratamiento(64,128);
+```
+
+>Este procedimiento se encargara de terminar un tratamiento, poniendole fecha al campo "fecha_fin" y actualiza el estado del medico y del paciente de, true/Activo a false/Inactivo. Recibe 2 argumentos:
+
+>           * id_medico
+>           * id_paciente
+
+>En este procedimiento se involucra la tabla "tratamientos", "medicos" y "pacientes".
+
+___
+
+> * "generar_factura_medico"
+```sql
+   CALL centro_medico.generar_factura_medico( 64, 128, 64, 360000.00, '2024-07-30');
+```
+
+>Este procedimiento se encarga de generar una nueva factura mensual indicando el id_medico del medico y el id_tratamiento de donde trabaja. Recibe 5 argumento:
+
+>           * id_medico
+>           * id_tratamiento
+>           * horas_trabajadas
+>           * monto_pagado
+>           * mes_facturado
+
+>Este proceso no involucra ninguna tabla, solo hace consultas a la tabla "Tratamientos y Medicos" para chekear si los identificadores que se pasan como argumento son reales.
+
+
+> * "generar_factura_paciente"
+```sql
+   CALL centro_medico.generar_factura_paciente( 128, 128 , 380000.00, '2024-07-30');
+```
+
+>Este procedimiento se encarga de generar una nueva factura mensual indicando el id_paciente y el id_tratamiento de donde esta siendo tratado. Recibe 4 argumentos:
+
+>               * id_tratamiento
+>               * id_paciente
+>               * cuota_mensual
+>               * factura_mes
+
+>Este proceso no involucra ninguna tabla, solo hace consultas a la tabla "Tratamientos y Pacientes" para chekear si los identificadores que se pasan como argumento son reales.
+
+>Si el paciente tiene obra social, tendra un descuento segun las que esten registradas en el centro medico. Este descuento se aplica, o no, justo antes de la sentencia insert dentro del procedimiento. Si logra aplicar el descuento. Se crea un registro en una tabla auditora llamada auditoria_trigger. Si no, se registra tal cual se ingresa como parametro al procedimiento.
+___
+
+> ## TRIGGERS
+
+> * "insertar_RUP_matricula"
+```sql
+   CALL centro_medico.generar_factura_paciente( 128, 128 , 380000.00, '2024-07-30');
+```
