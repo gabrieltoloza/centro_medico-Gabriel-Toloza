@@ -183,7 +183,7 @@
 ## Guia para levantar la base de datos:
 
 
-#### 1 - Primer paso
+### 1 - Primer paso
 <table>
     <tr><td>
         Una vez tenga el respositorio debera hacer click en la seccion " < > Code " de 
@@ -195,7 +195,7 @@
 ![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/1er_paso_Guia.png)
 
 
-#### 2 - Segundo paso
+### 2 - Segundo paso
 <table>
     <tr><td>
         Dejamos cargar el sitio una vez este listo hacemos click abajo a la izquierda
@@ -208,7 +208,7 @@
 
 
 
-#### 3 - Tercer paso
+### 3 - Tercer paso
 <table>
     <tr><td>
         Luego hacemos click la opcion " Open in VS Code Desktop ..." y confirmamos los permisos.
@@ -218,4 +218,203 @@
 ![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/Guia-paso-3.png)
 
 
+### 4 - Cuarto paso 
+<table>
+    <tr><td>
+        Una vez tengamos configurado el tunel, abrimos una terminal y procedemos a ejecutar el comando <b>"make"</b> en la consola.
+        Demora unos segundos.
+        Una vez terminado podemos testear la conexion con el comando <b>"make test-db"</b>, esto devolvera las tablas y objetos de la base de datos.
+        Tambien podemos usar <b>"make access-db"</b> para ingresar a la terminal de la base de datos. Para cerrar la conexion podemos ejecutar <b>"make down"</b>, comando que borrara la base de datos y cerrara el contenedor.
+    </td></tr>
+</table>
 
+
+# Objetos de la base de datos #
+>
+>
+>
+> ## Vistas: 
+> 
+> * "view_duenos_centros_medicos"
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_duenos_centros_medicos;
+```
+>
+>
+>Esta vista devolvera a los duenos de los centros medicos.
+>No es relevante pero de alguna manera si alguien lo necesitara estaria disponible para ciertos usuarios. 
+> Puede filtrarse por centro medico.
+>
+> #### Tablas involucradas:
+>                      * duenos
+>                      * centros_medicos
+>
+>
+>
+___
+---
+> 
+> * "view_show_empleados_all_data"
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_empleados_all_data;
+```
+>
+>
+> Esta vista devolvera todos los datos relevantes para mostrar los empleados en el area operativa. Puede filtrarse por centro medico.
+> 
+> #### Tablas involucradas:
+>                       * puestos
+>                       * empleados_puestos
+>                       * empleados
+>                       * obra_social_empleados
+>                       * centros_medicos
+___
+---
+
+> * "view_show_empleados_facturaciones"
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_empleados_facturaciones;
+```
+>
+>
+>
+>Esta vista devolvera todos los
+>empleados y sus facturaciones.
+> Servira para controlar la facturacion de los mismos. Se consumiria desde un backend para mostrar los datos en la app del centro_medico
+>
+> #### Tablas involucradas:
+>                         * honorario_facturas
+>                         * empleados
+>                         * empleados_puestos
+>                         * puestos
+___
+---
+
+> * "view_show_empleados_obras_sociales"
+```sql
+    SELECT 
+    *
+    FROM centro_medico.view_show_empleados_obras_sociales;
+```
+>
+>
+>
+>Esta vista devolvera a los empleados, con todos los detalles de la obra social.
+>Se puede filtrar por nombre o por dni.
+>Recomendacion:
+>     Filtrar usando dni
+>
+> #### Tablas involucradas:
+>                       * empleados
+>                       * obra_social_empleados
+___
+---
+
+> * "view_show_pacientes_obra_social"
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_pacientes_obra_social;
+```
+>
+>
+>
+> Esta vista devuelve a los pacientes con sus obras sociales.
+> Esta vista servira para devolver y un backend pueda mutar la respuesta en un array de pacientes a la app que lo consuma. 
+
+> #### Tablas ivolucradas:
+>                       * pacientes
+>                       * obra_social_pacientes
+___
+---
+
+> * "view_show_tratamientos_main"
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_tratamientos_main;
+```
+>
+>
+>
+>Esta vista muestra los tratamientos con su paciente y medico respectivo.
+>Tambien se puede filtrar por centro_medico.
+>Esto sera consumido por una app
+>de gestion del centro medico.
+
+> #### Tablas involucradas:
+>                       * obra_social_pacientes
+>                       * pacientes
+>                       * tratamientos
+>                       * medicos
+>                       * profesion_medicos
+>                       * profesiones
+___
+---
+
+> * "view_show_medicos_full_data"
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_medicos_full_data;
+```
+>
+>
+>
+>Esta vista muestra todos los datos de los medicos. Sirve para un detalle de cada medico. En un futuro puede produndizarse.
+
+> #### Tablas involucradas:
+>                       * medicos
+>                       * profesion_medicos
+>                       * profesiones
+>                       * matriculas
+>                       * RUP_registro_matriculas
+___
+---
+
+> * "view_facturacion_tratamiento_medico"
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_facturacion_medico_tratamiento;
+```
+>
+>
+>
+>Esta vista muestra detalles de la facturacion del medico de cada tratamiento. Esto sera consumido por la app para mostrar datos que deban usarse como facturacion real
+>o llevar un control de ello.
+
+> #### Tablas involucradas:
+>                       * profesiones
+>                       * profesion_medicos
+>                       * medicos
+>                       * tratamientos
+>                       * factura_medico
+___
+---
+
+> * "view_facturacion_tratamiento_paciente"
+```sql
+    SELECT 
+    *
+    FROM centro_medico.view_facturacion_tratamiento_paciente;
+```
+>
+>
+>
+> Esta vista muestra detalles de la facturacion del paciente de cada tratamiento. Esto sera consumido por la app para mostrar datos que deban usarse como facturacion real
+>o llevar un control de ello.
+
+> #### Tablas involucradas: 
+>                       * obra_social_pacientes
+>                       * pacientes
+>                       * tratamientos
+>                       * factura_medico
+___
+---
