@@ -1,5 +1,5 @@
 USE centro_medico;
-EXPLAIN centro_medico.obra_social_pacientes;
+
 
 
 

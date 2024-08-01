@@ -1,4 +1,4 @@
-
+USE centro_medico;
 
 -- AREA OPERATIVA
 -- AREA OPERATIVA

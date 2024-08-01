@@ -12,7 +12,6 @@ DOCKER_COMPOSE_FILE=./docker-compose.yml
 DATABASE_CREATION=./script_sql/esquema.sql
 DATABASE_POPULATION=./script_sql/population.sql
 
-FILES=procedimientos triggers vistas funciones 
 
 
 .PHONY: all up objects test-db access-db down
@@ -40,7 +39,25 @@ up:
 
 objects:
 		@echo "Creando objetos en 'centro_medico' ..."
-		@for file in ${FILES}; do \
-			@echo "Procesando $$file y añadiendo a la base de datos: ${DATABASE}"; \
-		docker exec -it ${SERVICE_NAME} mysql -u$(MYSQL_USER) -p$(PASSWORD) -e "source ./script_sql/object_DB/$$file.sql"; \
-		done
+		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE} -e "source /script_sql/objetos_DB/procedimientos.sql"
+		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE} -e "source /script_sql/objetos_DB/triggers.sql"
+		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE} -e "source /script_sql/objetos_DB/vistas.sql"
+		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE} -e "source /script_sql/objetos_DB/funciones.sql"
+
+
+test-db:
+		@echo "Testing the tables"
+		docker exec -it $(SERVICE_NAME)  mysql -u$(USER) -p$(PASSWORD)  -e "source ./script_sql/consultas.sql";
+
+
+access-db:
+		@echo "Accediendo a la base de datos ..."
+		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE}
+
+
+
+down: 
+		@echo "Removiendo base de datos ..."
+		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} -e "DROP DATABASE IF EXISTS ${DATABASE};"
+		@echo "Adios !!."
+		docker compose -f ${DOCKER_COMPOSE_FILE} down

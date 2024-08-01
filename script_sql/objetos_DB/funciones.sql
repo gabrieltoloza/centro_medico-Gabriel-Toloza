@@ -1,3 +1,7 @@
+USE centro_medico;
+
+
+
 
 -- Funcion que sirve para devolver precio de algo + IVA (establecido en 21% en Argentina), 
 -- servira para pagar algun salario o algun costo/gasto que tenga que ver con insumos.
