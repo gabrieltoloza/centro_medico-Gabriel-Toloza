@@ -564,7 +564,7 @@ ___
 >           * mes_facturado
 
 >Este proceso no involucra ninguna tabla, solo hace consultas a la tabla "Tratamientos y Medicos" para chekear si los identificadores que se pasan como argumento son reales.
-
+___
 
 > * "generar_factura_paciente"
 ```sql

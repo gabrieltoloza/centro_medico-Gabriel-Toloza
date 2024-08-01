@@ -227,6 +227,7 @@ CREATE PROCEDURE centro_medico.terminar_tratamiento
 	IN id_paciente INT
 )
 BEGIN
+
 	DECLARE check_id_tratamiento INT;
 	DECLARE check_id_paciente INT;
 	DECLARE check_id_medico INT;
@@ -234,12 +235,24 @@ BEGIN
 	-- Checkeando si existe el paciente en la tabla tratamientos.
 	SELECT st.id_medico INTO check_id_medico
 	FROM centro_medico.tratamientos AS st
-	WHERE st.id_medico = id_medico;
+	WHERE st.id_medico = id_medico
+	ORDER BY st.id_tratamiento
+	LIMIT 1;
 
 	-- Checkeando si existe el paciente en la tabla tratamientos.
 	SELECT st.id_paciente INTO check_id_paciente
 	FROM centro_medico.tratamientos AS st
-	WHERE st.id_paciente = id_paciente;
+	WHERE st.id_paciente = id_paciente
+	ORDER BY st.id_tratamiento
+	LIMIT 1;
+
+	-- Checkeando si existe el tratamiento en la tabla
+	SELECT st.id_tratamiento INTO check_id_tratamiento
+	FROM centro_medico.tratamientos AS st
+	WHERE st.id_paciente = check_id_paciente
+	AND st.id_medico = check_id_medico
+	ORDER BY st.id_tratamiento DESC
+	LIMIT 1;
 
 	IF check_id_paciente IS NULL OR check_id_medico IS NULL THEN 
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se pudo finalizar el tratamiento.';
@@ -251,6 +264,11 @@ BEGIN
 		UPDATE centro_medico.pacientes 
 		SET estado = 0
 		WHERE id_paciente = check_id_paciente;
+	
+		UPDATE centro_medico.tratamientos
+		SET fecha_fin = CURRENT_DATE
+		WHERE id_tratamiento = check_id_tratamiento;
+			
 		
 		SELECT 'Tratamiento finalizado' AS mensaje;
 	END IF;
