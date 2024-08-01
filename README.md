@@ -2,7 +2,7 @@
 
 > Este proyecto se trata de un centro medico orientado a salud mental, se debe gestionar los servicios dados hacia pacientes ofreciendo profesionales(medicos) para cubrir necesidades. El diseño de la base de datos gestiona tratamientos, medicos con sus respectivas matriculas y profesion, pacientes con sus obras sociales y facturacion, tanto como para medicos en forma de salarios/honorarios y pacientes en forma de aranceles. 
 
-> Ademas se gestiona las entidades para manejar los empleados, sus puestos y obra social correspondiente.
+> Ademas se gestiona las entidades del area operativa para manejar los empleados, sus puestos y obra social correspondiente.
 
 
 > -
@@ -175,3 +175,47 @@
 
 
 ![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/DER-Centro_Medico-DBeaver.png)
+
+
+
+
+
+## Guia para levantar la base de datos:
+
+
+#### 1 - Primer paso
+<table>
+    <tr><td>
+        Una vez tenga el respositorio debera hacer click en la seccion " < > Code " de 
+        Github. Luego hacer click en "Create codespace on main".
+    </td></tr>
+</table>
+
+
+![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/1er_paso_Guia.png)
+
+
+#### 2 - Segundo paso
+<table>
+    <tr><td>
+        Dejamos cargar el sitio una vez este listo hacemos click abajo a la izquierda
+        Justo en la esquina
+    </td></tr>
+</table>
+
+
+![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/Guia-2-paso.png)
+
+
+
+#### 3 - Tercer paso
+<table>
+    <tr><td>
+        Luego hacemos click la opcion " Open in VS Code Desktop ..." y confirmamos los permisos.
+    </td></tr>
+</table>
+
+![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/Guia-paso-3.png)
+
+
+
