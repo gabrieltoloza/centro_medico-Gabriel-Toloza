@@ -11,6 +11,7 @@ USER=${MYSQL_USER}
 DOCKER_COMPOSE_FILE=./docker-compose.yml
 DATABASE_CREATION=./script_sql/esquema.sql
 DATABASE_POPULATION=./script_sql/population.sql
+USERS_DB_CONTROL=./script_sql/usuarios.sql
 
 
 
@@ -53,6 +54,21 @@ test-db:
 access-db:
 		@echo "Accediendo a la base de datos ..."
 		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE}
+
+
+create-users:
+		@echo "Creando usuarios y sus permisos ..."
+		docker exec -it ${SERVICE_NAME} mysql -uroot -p${PASSWORD} ${DATABASE} -e "source ${USERS_DB_CONTROL};"
+
+
+access-db-admin1:
+		@echo "Ingresando con 'administrador' ..."
+		docker exec -it ${SERVICE_NAME} mysql -uadministrador1 -padmin123;
+
+	
+access-db-admin2:
+		@echo "Ingresando con 'administrador' ..."
+		docker exec -it ${SERVICE_NAME} mysql -uadministrador2 -padmin123;
 
 
 
