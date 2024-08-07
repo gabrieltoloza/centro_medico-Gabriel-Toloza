@@ -61,14 +61,9 @@ create-users:
 		docker exec -it ${SERVICE_NAME} mysql -uroot -p${PASSWORD} ${DATABASE} -e "source ${USERS_DB_CONTROL};"
 
 
-access-db-admin1:
-		@echo "Ingresando con 'administrador' ..."
-		docker exec -it ${SERVICE_NAME} mysql -uadministrador1 -padmin123;
-
-	
-access-db-admin2:
-		@echo "Ingresando con 'administrador' ..."
-		docker exec -it ${SERVICE_NAME} mysql -uadministrador2 -padmin123;
+show-users:
+		@echo "Listando usuarios creados ..."
+		docker exec -it $(SERVICE_NAME)  mysql -uroot -p$(PASSWORD) ${DATABASE}  -e "source ./script_sql/users_query.sql";
 
 
 
