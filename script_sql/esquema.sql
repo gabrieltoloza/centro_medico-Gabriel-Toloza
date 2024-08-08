@@ -14,7 +14,7 @@ CREATE TABLE duenos (
 	domicilio_dueno VARCHAR(255) NOT NULL,
 	telefono_dueno BIGINT UNIQUE NOT NULL,
 	PRIMARY KEY (id_dueno)
-) COMMENT "Tabla para almacenar a los dueños/socios del Centro Medico";
+) COMMENT "Tabla para almacenar a los duenos/socios del Centro Medico";
 
 
 
