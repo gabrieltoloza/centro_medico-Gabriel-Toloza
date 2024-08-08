@@ -2,9 +2,9 @@ nombre_puesto,honorario_mensual,descripcion_puesto
 limpieza/maestranza,517555.87,encargados de mantener la limpieza y el orden del establecimiento
 seguridad,625120.88,encargado de mantener la integridad fisica y material del establecimiento y las personas
 recepcion,450000.50,atender a los pacientes y coordinar citas o consultas
-mantenimiento,530000.00,encargados de reparar y mantener las instalaciones del centro médico
-farmacia,470000.75,gestionar el stock de medicamentos y suministros médicos
+mantenimiento,530000.00,encargados de reparar y mantener las instalaciones del centro medico
+farmacia,470000.75,gestionar el stock de medicamentos y suministros medicos
 administracion,480000.80,realizar tareas administrativas y de oficina del centro medico
-radiología,600000.90,gestionar y operar equipos de diagnóstico por imagen
-laboratorio,590000.60,procesar muestras y realizar análisis clínicos
-soporte técnico,550000.45,encargados del mantenimiento y soporte de los sistemas informáticos
+radiologia,600000.90,gestionar y operar equipos de diagnostico por imagen
+laboratorio,590000.60,procesar muestras y realizar analisis clinicos
+soporte tecnico,550000.45,encargados del mantenimiento y soporte de los sistemas informaticos
