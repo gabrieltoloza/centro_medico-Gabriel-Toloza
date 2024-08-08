@@ -37,5 +37,5 @@ id_centro_medico,nombre_medico,apellido_medico,cuit,email,estado,fecha_alta
 3,Benjamín,Cabrera,20309876520,benjamin_cabrera@gmail.com,0,2022-04-07
 1,Catalina,Mendoza,20287654321,catalina_mendoza@gmail.com,0,2021-11-23
 2,Santiago,Benítez,20298765422,santiago_benitez@gmail.com,0,2022-06-15
-3,Delfina,Acuña,20276543223,delfina_acuna@gmail.com,0,2021-09-20
+3,Delfina,Acuna,20276543223,delfina_acuna@gmail.com,0,2021-09-20
 1,Mateo,Villalba,20310987624,mateo_villalba@gmail.com,0,2022-01-08
