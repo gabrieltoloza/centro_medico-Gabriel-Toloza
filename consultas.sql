@@ -1,5 +1,7 @@
 USE centro_medico;
 
+-- muestra de git
+
 SELECT 
 *
 FROM centro_medico.empleados;
