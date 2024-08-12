@@ -463,4 +463,122 @@ DELIMITER ;
 
 
 
+
+
+
+
+
+-- Procedimiento para dar de alta a un empleado
+-- Procedimiento para dar de alta a un empleado
+-- CHECKEAR SI FUNCIONA - CHECKEAR SI FUNCIONA - CHECKEAR SI FUNCIONA
+-- CHECKEAR SI FUNCIONA - CHECKEAR SI FUNCIONA - CHECKEAR SI FUNCIONA
+-- CHECKEAR SI FUNCIONA - CHECKEAR SI FUNCIONA - CHECKEAR SI FUNCIONA
+
+DROP PROCEDURE IF EXISTS centro_medico.alta_empleado;
+DELIMITER //
+
+CREATE PROCEDURE centro_medico.alta_empleado
+(
+	IN centro_medico_id INT,
+	IN empleado_nombre VARCHAR(255),
+	IN empleado_apellido VARCHAR(255),
+	IN empleado_dni BIGINT,
+	IN empleado_domicilio VARCHAR(255),
+	IN empleado_telefono BIGINT,
+	IN empleado_fecha_alta DATE,
+	IN empleado_puesto VARCHAR(255),
+	IN obra_social VARCHAR(255),
+	IN numero_carnet BIGINT,
+	IN alta_obra_social DATE
+)
+BEGIN
+
+	DECLARE error_message VARCHAR(255);
+	DECLARE check_empleado_dni INT;
+	DECLARE check_puesto VARCHAR(255);
+	DECLARE check_id_puesto INT;
+	DECLARE new_id_empleado INT;
+	DECLARE check_obra_social INT;
+
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+		-- Manejo de excepcion
+		ROLLBACK;
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+	END;
+
+	START TRANSACTION;
+
+	-- Checkeando el que dni del empleado no existe en la base de datos
+	SELECT e.dni_empleado INTO check_empleado_dni
+	FROM centro_medico.empleados AS e
+	WHERE e.dni_empleado = empleado_dni;
+
+	-- Checkeando que el puesto exista en la base de datos y capturando el id del puesto
+	SELECT p.nombre_puesto, p.id_puesto INTO check_puesto, check_id_puesto
+	FROM centro_medico.puestos AS p
+	WHERE p.nombre_puesto = empleado_puesto;
+
+	-- Checkeando si la obra social existe
+	SET check_obra_social = CHECK_OS(obra_social);
+
+
+	-- Validaciones para que en el caso que haya excepciones, caigan en el bloque de errores.
+	IF check_empleado_dni IS NOT NULL THEN
+		SET error_message = 'EL DNI INGRESADO CORRESPONSE A UN EMPLEADO EXISTENTE';
+		SIGNAL SQLSTATE '45000';
+	ELSEIF check_puesto IS NULL THEN
+		SET error_message = 'NO SE ENCUENTRA EL PUESTO INDICADO';
+		SIGNAL SQLSTATE '45000';
+	ELSE
+
+		-- Insertando registro en la tabla pacientes
+		INSERT INTO centro_medico.empleados
+			(id_centro_medico, nombre_empleado, apellido_empleado, dni_empleado, domicilio_empleado, telefono_empleado, fecha_alta)
+		VALUES
+			(centro_medico_id, empleado_nombre, empleado_apellido, empleado_dni, empleado_domicilio, empleado_telefono, empleado_fecha_alta);
+
+		-- Guardando el id creado en la variable
+		SET new_id_empleado = LAST_INSERT_ID();
+
+		-- Insertando en la tabla intermedia
+		INSERT INTO centro_medico.empleados_puestos
+			(id_empleado, id_puesto)
+		VALUES
+			(new_id_empleado, check_id_puesto);
+
+		-- Checkeando el resultaldo de la validacion de la obra social
+		IF check_obra_social = 0 THEN
+			SET error_message = 'OBRA SOCIAL NO PERMITIDA';
+			SIGNAL SQLSTATE '45000';
+		ELSE
+			INSERT INTO centro_medico.obra_social_empleados
+				(id_empleado, nombre_obra_social, carnet_numero, fecha_alta)
+			VALUES
+				(new_id_empleado, UPPER(obra_social), numero_carnet, empleado_fecha_alta);
+		END IF;
+
+		COMMIT;
+
+
+		SELECT 'Empleado creado con exito' AS Mensaje;
+	END IF;
+
+END//
+DELIMITER ;
+
+-- Caso para que falle por obra social incorrecta
+CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'mantenimiento', 'SWIISMEDICAL', 1474456, '2024-11-15');
+
+-- Caso para que falle por puesto de trabajo incorrecto
+CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'electricista', 'OSDE', 1474456, '2024-11-15');
+
+-- Caso para que falle por dni existente
+CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 49513234, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'mantenimiento', 'UOCRA', 1474456, '2024-11-15');
+
+-- Caso de uso correcto
+CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'mantenimiento', 'UOCRA', 1474456, '2024-11-15');
+
+
+
 SHOW WARNINGS;

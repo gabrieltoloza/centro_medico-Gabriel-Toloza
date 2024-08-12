@@ -167,3 +167,36 @@ DELIMITER ;
 		tp.obra_social
 	FROM centro_medico.view_facturacion_tratamiento_paciente AS tp
 	LIMIT 5;
+
+
+
+
+
+-- Esta funcion controlara si la obra social ingresada esta dentro de las permitidas para empleados en el centro medico:
+-- Esta funcion controlara si la obra social ingresada esta dentro de las permitidas para empleados en el centro medico:
+-- Esta funcion controlara si la obra social ingresada esta dentro de las permitidas para empleados en el centro medico:
+
+DROP FUNCTION IF EXISTS centro_medico.CHECK_OS;
+DELIMITER //
+
+CREATE FUNCTION centro_medico.CHECK_OS(obra_social VARCHAR(255))
+	RETURNS INT
+	NO SQL
+BEGIN
+
+	DECLARE check_obra_social INT;
+
+	SET check_obra_social = CASE
+								WHEN UPPER(obra_social) IN ('OSDE', 'UOCRA', 'SANCOR') THEN 1
+								ELSE 0
+						  END;
+
+	RETURN check_obra_social;
+
+END //
+DELIMITER ;
+
+	-- Caso de uso correcto, resultado " true"
+	SELECT CHECK_OS('uocra')
+	-- Caso de uso incorrecto, resultado " false"
+	SELECT CHECK_OS('swissmedical')
