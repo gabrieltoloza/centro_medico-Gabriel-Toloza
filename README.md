@@ -233,7 +233,7 @@
 >
 >
 >
-> ## Vistas: 
+## Vistas: 
 > 
 > * "view_duenos_centros_medicos"
 ```sql
@@ -419,7 +419,7 @@ ___
 ___
 
 
-> ## Funciones:
+## Funciones:
 
 > * "sumar_IVA_21()"
 ```sql
@@ -468,8 +468,9 @@ ___
 >
 >
 >Funcion para checkear que la obra social ingresada exista al momento de registrar un empleado. Podria otros casos de uso. Devuelve un booleano, si se encuentra dentro de las obras sociales para empleados arroja 'True(1)', sino arroja 'False(0)'. Si la cantidad de obra sociales crece se deberia crear una nueva tabla.
+___
 
-> ## Procedimientos:
+## Procedimientos:
 
 > * "alta_paciente"
 ```sql
@@ -628,7 +629,7 @@ ___
 
 >Este proceso no involucra ninguna tabla, solo hace consultas a la tabla "Empleados" para chekear si el identificador que se pasa como argumento es real.
 
-> ## TRIGGERS
+## TRIGGERS
 
 > * "insertar_RUP_matricula"
 
