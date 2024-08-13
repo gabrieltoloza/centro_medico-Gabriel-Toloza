@@ -459,6 +459,15 @@ ___
 >
 >
 >Funcion para aplicar descuento a una facturacion de servicio segun obra social. Esto se usara en facturacion de pacientes para aplicar descuento segun obra social. Recibe como parametro la obra social. Dentro de su cuerpo estan definidas las obras sociales permitidas. Esto puede optimizarse en un futuro.
+___
+
+> * "CHECK_OS()"
+```sql
+    CHECK_OS(VARCHAR) 
+```
+>
+>
+>Funcion para checkear que la obra social ingresada exista al momento de registrar un empleado. Podria otros casos de uso. Devuelve un booleano, si se encuentra dentro de las obras sociales para empleados arroja 'True(1)', sino arroja 'False(0)'. Si la cantidad de obra sociales crece se deberia crear una nueva tabla.
 
 > ## Procedimientos:
 
@@ -582,6 +591,42 @@ ___
 
 >Si el paciente tiene obra social, tendra un descuento segun las que esten registradas en el centro medico. Este descuento se aplica, o no, justo antes de la sentencia insert dentro del procedimiento. Si logra aplicar el descuento. Se crea un registro en una tabla auditora llamada auditoria_trigger. Si no, se registra tal cual se ingresa como parametro al procedimiento.
 ___
+
+> * "alta_empleado"
+```sql
+    -- Caso de uso correcto
+    CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150177897, '2024-11-25', 'mantenimiento', 'UOCRA', 1474456, '2024-11-15');
+```
+
+>Procedimiento que se encarga de registrar un nuevo empleado deben indicarse 11 (once) argumentos que corresponden a los campos:
+
+>               * id_centro_medico
+>               * empleado_mombre
+>               * empleado_apellido
+>               * empleado_dni
+>               * empleado_domicilio
+>               * empleado_telefono
+>               * empleado_fecha_alta
+>               * empleado_puesto
+>               * obra_social
+>               * numero_carmet
+>               * alta_obra_social
+
+>Este procedimiento tiene TCL, si algo arroja una excepcion hara un rollback mostrando un msj personalizado por cada error.
+___
+
+> * "nueva_factura_empleados"
+```sql
+    -- Caso de uso
+    CALL centro_medico.nueva_factura_empleados(3, '2024-08-13');
+```
+
+>Procedimiento que se encarga de registrar una nueva factura, deben indicarse 2 (dos) argumentos que corresponden a los campos:
+
+>               * id_empleado
+>               * fecha_registrada
+
+>Este proceso no involucra ninguna tabla, solo hace consultas a la tabla "Empleados" para chekear si el identificador que se pasa como argumento es real.
 
 > ## TRIGGERS
 

@@ -196,7 +196,7 @@ BEGIN
 END //
 DELIMITER ;
 
-	-- Caso de uso correcto, resultado " true"
-	SELECT CHECK_OS('uocra')
-	-- Caso de uso incorrecto, resultado " false"
-	SELECT CHECK_OS('swissmedical')
+	-- -- Caso de uso correcto, resultado " true"
+	-- SELECT CHECK_OS('uocra') AS Resultado
+	-- -- Caso de uso incorrecto, resultado " false"
+	-- SELECT CHECK_OS('swissmedical') AS Resultado

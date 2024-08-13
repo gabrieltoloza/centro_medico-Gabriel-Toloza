@@ -466,6 +466,20 @@ DELIMITER ;
 
 
 
+-- AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA
+-- AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA
+-- AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA
+-- AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA - AREA OPERATIVA
+
+
+
+
+
+
+
+
+
+
 
 
 -- Procedimiento para dar de alta a un empleado
@@ -567,18 +581,58 @@ BEGIN
 END//
 DELIMITER ;
 
--- Caso para que falle por obra social incorrecta
-CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'mantenimiento', 'SWIISMEDICAL', 1474456, '2024-11-15');
+-- -- Caso para que falle por obra social incorrecta
+-- CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'mantenimiento', 'SWIISMEDICAL', 1474456, '2024-11-15');
 
--- Caso para que falle por puesto de trabajo incorrecto
-CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'electricista', 'OSDE', 1474456, '2024-11-15');
+-- -- Caso para que falle por puesto de trabajo incorrecto
+-- CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'electricista', 'OSDE', 1474456, '2024-11-15');
 
--- Caso para que falle por dni existente
-CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 49513234, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'mantenimiento', 'UOCRA', 1474456, '2024-11-15');
+-- -- Caso para que falle por dni existente
+-- CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 49513234, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'mantenimiento', 'UOCRA', 1474456, '2024-11-15');
 
--- Caso de uso correcto
-CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'mantenimiento', 'UOCRA', 1474456, '2024-11-15');
+-- -- Caso de uso correcto
+-- CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150172832, '2024-11-25', 'mantenimiento', 'UOCRA', 1474456, '2024-11-15');
 
 
+
+
+
+
+
+
+-- Procedimiento para crear facturaciones del area operativa ...
+-- Procedimiento para crear facturaciones del area operativa ...
+-- Procedimiento para crear facturaciones del area operativa ...
+
+DROP PROCEDURE IF EXISTS centro_medico.nueva_factura_empleados;
+DELIMITER //
+
+CREATE PROCEDURE centro_medico.nueva_factura_empleados
+(
+	IN empleado_id INT,
+	IN fecha_facturacion DATE
+)
+BEGIN
+
+	DECLARE check_id_empleado INT;
+
+	-- Checkeando el id del empleado
+	SELECT e.id_empleado INTO check_id_empleado
+	FROM centro_medico.empleados AS e
+	WHERE e.id_empleado = empleado_id;
+
+	IF check_id_empleado IS NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'NO SE ENCONTRO EL REGISTRO DEL EMPLEADO';
+	ELSE
+		INSERT INTO centro_medico.honorario_facturas
+			(id_empleado, mes_facturado)
+		VALUES
+			(check_id_empleado, fecha_facturacion);
+	END IF;
+
+END //
+DELIMITER ;
+
+CALL centro_medico.nueva_factura_empleados(3, '2024-08-13');
 
 SHOW WARNINGS;
