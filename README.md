@@ -174,7 +174,7 @@
 > -
 
 
-![Centro Medico - Saludo Mental](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/DER-Centro_Medico-DBeaver.png)
+![Centro Medico - Saludo Mental](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/centro_medico-DER.png)
 
 
 
