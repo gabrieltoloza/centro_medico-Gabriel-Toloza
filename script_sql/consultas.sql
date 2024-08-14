@@ -78,3 +78,11 @@ ORDER BY
     EVENT_OBJECT_TABLE, 
     ACTION_TIMING, 
     EVENT_MANIPULATION;
+
+
+-- VERIFICANDO USUARIOS Y ROLES:
+SELECT
+    FROM_USER AS roles, 
+    '   --->' AS otorgado_a, 
+    TO_USER AS usuarios 
+FROM mysql.role_edges;
