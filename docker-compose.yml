@@ -12,7 +12,9 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       
 
-    command: --local-infile=1 --log-bin-trust-function-creators=1
+    command: >
+        bash -c "microdnf install vim -y && 
+                  docker-entrypoint.sh --local-infile=1 --log-bin-trust-function-creators=1"
     ports:
       - 3309:3306
     volumes:

@@ -231,6 +231,18 @@ BEGIN
 	DECLARE check_id_tratamiento INT;
 	DECLARE check_id_paciente INT;
 	DECLARE check_id_medico INT;
+	DECLARE error_message VARCHAR(255);
+
+	-- Bloque de excepciones
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+		-- Manejo de excepcion
+		ROLLBACK;
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+	END;
+
+
+	START TRANSACTION;
 
 	-- Checkeando si existe el paciente en la tabla tratamientos.
 	SELECT st.id_medico INTO check_id_medico
@@ -246,6 +258,7 @@ BEGIN
 	ORDER BY st.id_tratamiento
 	LIMIT 1;
 
+
 	-- Checkeando si existe el tratamiento en la tabla
 	SELECT st.id_tratamiento INTO check_id_tratamiento
 	FROM centro_medico.tratamientos AS st
@@ -254,8 +267,9 @@ BEGIN
 	ORDER BY st.id_tratamiento DESC
 	LIMIT 1;
 
-	IF check_id_paciente IS NULL OR check_id_medico IS NULL THEN 
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se pudo finalizar el tratamiento.';
+	IF check_id_paciente IS NULL OR check_id_medico IS NULL THEN
+		SET error_message = 'NO SE PUDO FINALIZAR EL TRATAMIENTO. PACIENTE O MEDICO NO ENCONTRADO';
+		SIGNAL SQLSTATE '45000';
 	ELSE
 		UPDATE centro_medico.medicos 
 		SET estado = 0
@@ -264,15 +278,20 @@ BEGIN
 		UPDATE centro_medico.pacientes 
 		SET estado = 0
 		WHERE id_paciente = check_id_paciente;
-	
-		UPDATE centro_medico.tratamientos
-		SET fecha_fin = CURRENT_DATE
-		WHERE id_tratamiento = check_id_tratamiento;
-			
-		
+
+		IF check_id_tratamiento IS NULL THEN
+			SET error_message = 'TRATAMIENTO NO ENCONTRADO';
+			SIGNAL SQLSTATE '45000';
+		ELSE
+			UPDATE centro_medico.tratamientos
+			SET fecha_fin = CURRENT_DATE
+			WHERE id_tratamiento = check_id_tratamiento;
+		END IF;
+
+		COMMIT;
 		SELECT 'Tratamiento finalizado' AS mensaje;
 	END IF;
-	
+
 END //
 DELIMITER ;
 
@@ -314,6 +333,7 @@ BEGIN
 						ELSE 1
 				   END;
 	
+	-- Checkeando que no exista el paciente
 	SELECT 
 		sp.dni INTO check_exists
     FROM centro_medico.pacientes AS sp
@@ -394,6 +414,17 @@ BEGIN
 	DECLARE check_profesion VARCHAR(255);
 	DECLARE check_id_profesion INT;
 	DECLARE check_num_matricula BIGINT;
+	DECLARE error_message VARCHAR(255);
+
+	-- Bloque de excepciones
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+		-- Manejo de excepcion
+		ROLLBACK;
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+	END;
+
+	START TRANSACTION;
 
 	SET check_profesion = LOWER(profesion);
 
@@ -418,14 +449,18 @@ BEGIN
 	WHERE mat.numero_matricula = num_matricula;
 	
 
-	IF check_cuit IS NOT NULL THEN 
-			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El cuit ingresado pertenece a un medico registrado. Compruebe los datos.';
-	ELSEIF check_profesion IS NULL THEN 
-			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Profesion no registrada en la base de datos.';
-	ELSEIF check_id_profesion IS NULL THEN 
-			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error al intentar encontrar la profesion.';
+	IF check_cuit IS NOT NULL THEN
+			SET error_message = 'El cuit ingresado pertenece a un medico registrado. Compruebe los datos.';
+			SIGNAL SQLSTATE '45000';
+	ELSEIF check_profesion IS NULL THEN
+			SET error_message = 'Profesion no registrada en la base de datos.';
+			SIGNAL SQLSTATE '45000';
+	ELSEIF check_id_profesion IS NULL THEN
+			SET error_message = 'Error al intentar encontrar la profesion.';
+			SIGNAL SQLSTATE '45000';
 	ELSEIF check_num_matricula IS NOT NULL THEN
-			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La matricula ingresada pertenece a un registro existente.';
+			SET error_message = 'La matricula ingresada pertenece a un registro existente.';
+			SIGNAL SQLSTATE '45000';
 	ELSE
 		-- Creando un nuevo registro en la tabla medicos
 		INSERT INTO centro_medico.medicos 
@@ -448,6 +483,7 @@ BEGIN
 		
 	END IF;
 
+	COMMIT;
 
 	SELECT 'Medico creado con exito' AS mensaje;
 END //
