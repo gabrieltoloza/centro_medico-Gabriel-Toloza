@@ -7,7 +7,7 @@
 
 > -
 
-![Centro Medico - Saludo Mental - Excalidraw](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/DER-Centro_Medico-Excalidraw.png)
+![Centro Medico - Saludo Mental - Excalidraw](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/DER-Centro_Medico-Excalidraw.png)
 
 > -
 
@@ -174,7 +174,7 @@
 > -
 
 
-![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/DER-Centro_Medico-DBeaver.png)
+![Centro Medico - Saludo Mental](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/DER-Centro_Medico-DBeaver.png)
 
 
 
@@ -192,7 +192,7 @@
 </table>
 
 
-![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/1er_paso_Guia.png)
+![Centro Medico - Saludo Mental](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/1er_paso_Guia.png)
 
 
 ### 2 - Segundo paso
@@ -204,7 +204,7 @@
 </table>
 
 
-![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/Guia-2-paso.png)
+![Centro Medico - Saludo Mental](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/Guia-2-paso.png)
 
 
 
@@ -215,7 +215,7 @@
     </td></tr>
 </table>
 
-![Centro Medico - Saludo Mental](https://github.com/ToxicBlood2023/centro_medico-Gabriel-Toloza/blob/main/Guia-paso-3.png)
+![Centro Medico - Saludo Mental](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/Guia-paso-3.png)
 
 
 ### 4 - Cuarto paso 
