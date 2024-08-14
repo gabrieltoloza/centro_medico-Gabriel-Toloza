@@ -44,27 +44,17 @@ objects:
 		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE} -e "source /script_sql/objetos_DB/triggers.sql"
 		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE} -e "source /script_sql/objetos_DB/vistas.sql"
 		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE} -e "source /script_sql/objetos_DB/funciones.sql"
-
+		@echo "Creando roles y asignando a usuarios ..."
+		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE} -e "source ${USERS_DB_CONTROL};"
 
 test-db:
-		@echo "Testing the tables"
+		@echo "Testeando tablas, objetos, roles y usuarios"
 		docker exec -it $(SERVICE_NAME)  mysql -u$(USER) -p$(PASSWORD)  -e "source ./script_sql/consultas.sql";
 
 
 access-db:
 		@echo "Accediendo a la base de datos ..."
 		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE}
-
-
-create-users:
-		@echo "Creando usuarios y sus permisos ..."
-		docker exec -it ${SERVICE_NAME} mysql -uroot -p${PASSWORD} ${DATABASE} -e "source ${USERS_DB_CONTROL};"
-
-
-show-users:
-		@echo "Listando usuarios creados ..."
-		docker exec -it $(SERVICE_NAME)  mysql -uroot -p$(PASSWORD) ${DATABASE}  -e "source ./script_sql/users_query.sql";
-
 
 
 down: 
