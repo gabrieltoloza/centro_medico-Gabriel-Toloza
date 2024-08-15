@@ -3,7 +3,9 @@ USE centro_medico;
 
 
 
-
+-- Tablas y descripciones:
+-- Tablas y descripciones:
+-- Tablas y descripciones:
 SELECT 
     TABLE_NAME, 
     TABLE_COMMENT
@@ -13,17 +15,10 @@ WHERE
     TABLE_SCHEMA = 'centro_medico';
 
 
--- VERIFICACION DE IMPORTACION
-
+-- Verificacion de importacion
 SELECT 
-    table_name AS `Table`, 
-    table_rows AS `Row Count`
-FROM 
-    information_schema.tables
-WHERE 
-    table_schema = 'centro_medico'
-ORDER BY 
-    table_rows DESC;
+    *
+FROM centro_medico.verificacion_importacion_csv;
 
 
 -- VERIFICACION DE VISTAS

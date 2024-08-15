@@ -356,3 +356,98 @@ CREATE VIEW centro_medico.view_facturacion_tratamiento_paciente AS
     -- Usando vista "view_facturacion_tratamiento_paciente"
     -- Usando vista "view_facturacion_tratamiento_paciente"
 SELECT * FROM centro_medico.view_facturacion_tratamiento_paciente;
+
+
+
+
+
+
+-- Vista para mostrar la importacion de CSV:
+-- Vista para mostrar la importacion de CSV:
+-- Vista para mostrar la importacion de CSV:
+DROP VIEW IF EXISTS centro_medico.verificacion_importacion_csv;
+CREATE VIEW centro_medico.verificacion_importacion_csv AS
+	SELECT
+		'RUP_registro_matriculas' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.RUP_registro_matriculas
+	UNION
+	SELECT
+		'centros_medicos' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.centros_medicos
+	UNION
+	SELECT
+		'duenos' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.duenos
+	UNION
+	SELECT
+		'empleados' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.empleados
+	UNION
+	SELECT
+		'empleados_puestos' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.empleados_puestos
+	UNION
+	SELECT
+		'factura_medico' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.factura_medico
+	UNION
+	SELECT
+		'factura_paciente' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.factura_paciente
+	UNION
+	SELECT
+		'honorario_facturas' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.honorario_facturas
+	UNION
+	SELECT
+		'matriculas' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.matriculas
+	UNION
+	SELECT
+		'medicos' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.medicos
+	UNION
+	SELECT
+		'obra_social_empleados' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.obra_social_empleados
+	UNION
+	SELECT
+		'obra_social_pacientes' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.obra_social_pacientes
+	UNION
+	SELECT
+		'pacientes' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.pacientes
+	UNION
+	SELECT
+		'profesion_medicos' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.profesion_medicos
+	UNION
+	SELECT
+		'profesiones' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.profesiones
+	UNION
+	SELECT
+		'puestos' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.puestos
+	UNION
+	SELECT
+		'tratamientos' AS TABLE_NAME,
+		COUNT(*) AS ROW_COUNT
+	FROM centro_medico.tratamientos;
