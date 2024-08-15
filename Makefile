@@ -54,7 +54,7 @@ test-db:
 
 create-backup:
 		@echo "Creando backup del centro_medico ..."
-		docker exec $(SERVICE_NAME) sh -c 'mysqldump -u${USER} -p${PASSWORD} --host $(HOST) --port $(PORT) --routines --databases $(DATABASE) > ./backup_centro_medico.sql'
+		docker exec $(SERVICE_NAME) sh -c 'mysqldump -u${USER} -p${PASSWORD} --host $(HOST) --port 3306 --routines --databases $(DATABASE) > ./backup_centro_medico.sql'
 		docker cp $(SERVICE_NAME):/backup_centro_medico.sql ./backup_centro_medico.sql
 
 
