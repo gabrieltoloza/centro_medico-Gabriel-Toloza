@@ -52,6 +52,12 @@ test-db:
 		docker exec -it $(SERVICE_NAME)  mysql -u$(USER) -p$(PASSWORD)  -e "source ./script_sql/consultas.sql";
 
 
+create-backup:
+		@echo "Creando backup del centro_medico ..."
+		docker exec $(SERVICE_NAME) sh -c 'mysqldump -u${USER} -p${PASSWORD} --host $(HOST) --port $(PORT) --routines --databases $(DATABASE) > ./backup_centro_medico.sql'
+		docker cp $(SERVICE_NAME):/backup_centro_medico.sql ./backup_centro_medico.sql
+
+
 access-db:
 		@echo "Accediendo a la base de datos ..."
 		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE}
