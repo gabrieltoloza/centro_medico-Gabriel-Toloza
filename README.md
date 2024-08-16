@@ -45,7 +45,7 @@ ___
 
 # Centro Medico Lorena
 
-![Centro Medico - Salud Mental Integral - Lorena ](IMAGENAQUI)
+![Centro Medico - Salud Mental Integral - Lorena ](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/centro_medico_lorena.png)
 
 ___
 
