@@ -1,15 +1,65 @@
-# Centro Medico - Salud Mental // Gabriel Toloza
+# Proyecto Final SQL - Coderhouse
 
-> Este proyecto se trata de un centro medico orientado a salud mental, se debe gestionar los servicios dados hacia pacientes ofreciendo profesionales(medicos) para cubrir necesidades. El diseño de la base de datos gestiona tratamientos, medicos con sus respectivas matriculas y profesion, pacientes con sus obras sociales y facturacion, tanto como para medicos en forma de salarios/honorarios y pacientes en forma de aranceles. 
+Alumno: [Gabriel Toloza](https://www.linkedin.com/in/gabrieltoloza-software-developer/)
 
-> Ademas se gestiona las entidades del area operativa para manejar los empleados, sus puestos y obra social correspondiente.
+Comision: 57190
+
+Tutor: Leonel Lo Presto
+
+Profesor: Anderson Michel Torres
+
+___
+
+### Introducción: Descripción de la tematica de la base de datos
+
+> La temática esta inspirada en un Centro de Salud Mental Integral cuyo nombre es "Centro Medico Lorena". El método y regla utilizado es por dos equipos de trabajo (área administrativa, y área de facturaciones), se le asignan diferentes permisos de manipulacion para gestionar a los pacientes que ingresan bajo determinado tratamientos.
+___
+
+### Objetivo:
+
+> Diseñar una base de datos relacional que contemple las necesidades del centro médico para una mejor manipulacion de datos a la hora de administrar pacientes, medicos y empleados. La DB sera optima, escalable y de facil mantención, pudiendo asi generar altas, bajas de las diferentes entidades y facturaciones a los mismos. 
+___
+
+### Situación Problemática:
+
+> Como prioridad de la empresa hay que crear una base de datos que sea eficiente para cuidar la integridad de los datos y la facilidad de asignar diferentes operaciones a las distintas areas (operativa, administración). La base de datos debera brindar de forma agil la informacion que haya sido generada.
+___
+
+### Descripción del problema:
+
+1. Gestionar Area operativa(empleados, obra social, facturacion): 
+
+* Es necesario que se pueda identificar los empleados a los que se les asignan diferntes tareas y asi poder tener un filtrado limpio de las responsabilidades y generar facturaciones prolijas y transparentes.
+
+2. Gestionar Area administrativa(pacientes, medicos, obra sociale, tratamientos, facturas, etc):
+
+* Es importante que sea facil administrar esta área ya que sera vital para el centro medico poder tener un control total y de facil acceso a las consultas e ingreso de nuevas entidades. 
+___
+
+### Resolución del problema:
+
+> El problema planteado logra resolverse con la implementacion de una base de datos relacional hecha en MySQL que divide las prioridades en 3 sectores, área operativa, área profesional y área propietaria. Pudiendo asi crear 3 roles con sus respectivos permisos, cada rol tendra permisos selectivos y ninguno podra manipular el area del otro, lo unico que compartiran sera el permiso SELECT para poder ver y realizar peticiones a otra area si es necesario mejorando asi la comunicacion. El rol propietario solo tendra permisos de lectura y tendra una interfaz aparte. 
+___
 
 
-> -
+
+# Centro Medico Lorena
+
+![Centro Medico - Salud Mental Integral - Lorena ](IMAGENAQUI)
+
+___
+
+### Diagrama Excalidraw
 
 ![Centro Medico - Saludo Mental - Excalidraw](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/DER-Centro_Medico-Excalidraw.png)
 
-> -
+___
+
+### Diagrama DER DBeaver
+![Centro Medico - Saludo Mental](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/centro_medico-DER.png)
+
+
+
 
 ## Listado de tablas y descripcion
 
@@ -172,9 +222,6 @@
 
 
 > -
-
-
-![Centro Medico - Saludo Mental](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/centro_medico-DER.png)
 
 
 
