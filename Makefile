@@ -47,6 +47,7 @@ objects:
 		@echo "Creando roles y asignando a usuarios ..."
 		docker exec -it ${SERVICE_NAME} mysql -u${USER} -p${PASSWORD} ${DATABASE} -e "source ${USERS_DB_CONTROL};"
 
+
 test-db:
 		@echo "Testeando tablas, objetos, roles y usuarios"
 		docker exec -it $(SERVICE_NAME)  mysql -u$(USER) -p$(PASSWORD)  -e "source ./script_sql/consultas.sql";
