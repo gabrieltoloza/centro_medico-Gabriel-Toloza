@@ -280,9 +280,9 @@ ___
 >
 >
 >
-## Vistas: 
+## VISTAS: 
 > 
-> * "view_duenos_centros_medicos"
+> *   **_"view_duenos_centros_medicos"_**
 ```sql
     SELECT 
         *
@@ -292,18 +292,44 @@ ___
 >
 >Esta vista devolvera a los duenos de los centros medicos.
 >No es relevante pero de alguna manera si alguien lo necesitara estaria disponible para ciertos usuarios. 
-> Puede filtrarse por centro medico.
->
+> Puede filtrarse por sus campos.
+* Ejemplo:
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_duenos_centros_medicos
+    WHERE dni_dueno = 26458457;
+```
+* Esta compuesta por los siguientes campos:
+
+            | CAMPOS          |
+            | --------------- |
+            | dueno           |
+            | dni_dueno       |
+            | telefono_dueno  |
+            | centro_medico   |
+            | domicilio_CM    |
+            | email_CM        |
+            | telefono_CM     |
+            | ciudad          |
+            | provincia       |
+            | codigo_postal   |
+            | sitio_web       |
+
+
+
 > #### Tablas involucradas:
 >                      * duenos
 >                      * centros_medicos
 >
 >
 >
+_________________________________________________________________________
 ___
 
 > 
-> * "view_show_empleados_all_data"
+> *   **_"view_show_empleados_all_data"_**
+
 ```sql
     SELECT 
         *
@@ -311,7 +337,32 @@ ___
 ```
 >
 >
-> Esta vista devolvera todos los datos relevantes para mostrar los empleados en el area operativa. Puede filtrarse por centro medico.
+> Esta vista devolvera todos los datos relevantes para mostrar los empleados en el area operativa. Puede filtrarse por sus campos.
+* Ejemplo:
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_empleados_all_data
+    WHERE alta_CM 
+    BETWEEN '2023-05-01' AND '2023-06-01';
+```
+* Esta compuesta por los siguientes campos:
+
+            |   CAMPOS           |
+            | ------------------ |
+            | id_centro_medico   |
+            | empleado           |
+            | dni_empleado       |
+            | domicilio_empleado |
+            | telefono_empleado  |
+            | alta_CM            |
+            | nombre_obra_social |
+            | carnet_OS          |
+            | alta_OS            |
+            | puesto             |
+            | salario_mensual    |
+            | descripcion_puesto |
+
 > 
 > #### Tablas involucradas:
 >                       * puestos
@@ -320,9 +371,10 @@ ___
 >                       * obra_social_empleados
 >                       * centros_medicos
 ___
+___
 
 
-> * "view_show_empleados_facturaciones"
+> *  **_"view_show_empleados_facturaciones"_**
 ```sql
     SELECT 
         *
@@ -333,17 +385,37 @@ ___
 >
 >Esta vista devolvera todos los
 >empleados y sus facturaciones.
-> Servira para controlar la facturacion de los mismos. Se consumiria desde un backend para mostrar los datos en la app del centro_medico
+> Servira para controlar la facturacion de los mismos. Se consumiria desde un backend para mostrar los datos en la app del centro_medico. Puede filtrarse por sus campos.
 >
+* Ejemplo:
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_empleados_facturaciones
+    WHERE dni_empleado = 21593885;
+```
+* Esta compuesta por los siguientes campos:
+
+            |   CAMPOS           |
+            | ------------------ |
+            | empleado           |
+            | dni_empleado       |
+            | domicilio_empleado |
+            | mes_facturado      |
+            | tarea              |
+            | descripcion_puesto |
+            | salario            |
+
 > #### Tablas involucradas:
 >                         * honorario_facturas
 >                         * empleados
 >                         * empleados_puestos
 >                         * puestos
 ___
+___
 
 
-> * "view_show_empleados_obras_sociales"
+> *  **_"view_show_empleados_obras_sociales"_**
 ```sql
     SELECT 
     *
@@ -353,17 +425,34 @@ ___
 >
 >
 >Esta vista devolvera a los empleados, con todos los detalles de la obra social.
->Se puede filtrar por nombre o por dni.
->Recomendacion:
->     Filtrar usando dni
+>Se puede filtrar por nombre o por dni. Puede filtrarse por sus campos.
+* Ejemplo:
+```sql
+    SELECT 
+    *
+    FROM centro_medico.view_show_empleados_obras_sociales
+    WHERE DNI = 45853395;
+```
+* Esta compuesta por los siguientes campos:
+
+            |   CAMPOS           |
+            | ------------------ |
+            | id_centro_medico   |
+            | empleado           |
+            | DNI                |
+            | telefono           |
+            | OS                 |
+            | carnet_OS          |
+            | alta_OS            |
 >
 > #### Tablas involucradas:
 >                       * empleados
 >                       * obra_social_empleados
 ___
+___
 
 
-> * "view_show_pacientes_obra_social"
+> *  **_"view_show_pacientes_obra_social"_**
 ```sql
     SELECT 
         *
@@ -373,15 +462,35 @@ ___
 >
 >
 > Esta vista devuelve a los pacientes con sus obras sociales.
-> Esta vista servira para devolver y un backend pueda mutar la respuesta en un array de pacientes a la app que lo consuma. 
+> Esta vista servira para devolver y un backend pueda mutar la respuesta en un array de pacientes a la app que lo consuma. Puede filtrarse por sus campos.
+* Ejemplo:
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_pacientes_obra_social
+    WHERE alta_CM 
+    BETWEEN '2023-01-01' AND '2023-03-01';;
+```
+* Esta compuesta por los siguientes campos:
+
+            |   CAMPOS                    |
+            | --------------------------  |
+            | paciente                    |
+            | dni                         |
+            | alta_CM                     |
+            | actividad                   |
+            | tiene_obra_social           |
+            | nombre_obra_social_paciente |
+            | carnet_numero               |
 
 > #### Tablas ivolucradas:
 >                       * pacientes
 >                       * obra_social_pacientes
 ___
+___
 
 
-> * "view_show_tratamientos_main"
+> *  **_"view_show_tratamientos_main"_**
 ```sql
     SELECT 
         *
@@ -393,7 +502,26 @@ ___
 >Esta vista muestra los tratamientos con su paciente y medico respectivo.
 >Tambien se puede filtrar por centro_medico.
 >Esto sera consumido por una app
->de gestion del centro medico.
+>de gestion del centro medico. Puede filtrarse por sus campos.
+* Ejemplo:
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_tratamientos_main
+    WHERE area = 'psicologia';
+```
+* Esta compuesta por los siguientes campos:
+
+            |   CAMPOS           |
+            | ------------------ |
+            | obra_social        |
+            | carnet_OS          |
+            | paciente           |
+            | medico             |
+            | area               |
+            | descripcion        |
+            | fecha_inicio       |
+            | fecha_fin          |
 
 > #### Tablas involucradas:
 >                       * obra_social_pacientes
@@ -403,9 +531,10 @@ ___
 >                       * profesion_medicos
 >                       * profesiones
 ___
+___
 
 
-> * "view_show_medicos_full_data"
+> *  **_"view_show_medicos_full_data"_**
 ```sql
     SELECT 
         *
@@ -414,7 +543,25 @@ ___
 >
 >
 >
->Esta vista muestra todos los datos de los medicos. Sirve para un detalle de cada medico. En un futuro puede produndizarse.
+>Esta vista muestra todos los datos de los medicos. Sirve para un detalle de cada medico. En un futuro puede produndizarse. Puede filtrarse por sus campos.
+* Ejemplo:
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_show_medicos_full_data
+    WHERE numero_matricula = 45735192;
+```
+* Esta compuesta por los siguientes campos:
+
+            |   CAMPOS           |
+            | ------------------ |
+            | medico             |
+            | cuit               |
+            | email              |
+            | estado             |
+            | profesion          |
+            | numero_matricula   |
+            | alta_matricula     |
 
 > #### Tablas involucradas:
 >                       * medicos
@@ -423,9 +570,10 @@ ___
 >                       * matriculas
 >                       * RUP_registro_matriculas
 ___
+___
 
 
-> * "view_facturacion_tratamiento_medico"
+> *  **_"view_facturacion_tratamiento_medico"_**
 ```sql
     SELECT 
         *
@@ -435,7 +583,28 @@ ___
 >
 >
 >Esta vista muestra detalles de la facturacion del medico de cada tratamiento. Esto sera consumido por la app para mostrar datos que deban usarse como facturacion real
->o llevar un control de ello.
+>o llevar un control de ello. Puede filtrarse por sus campos.
+
+* Ejemplo:
+```sql
+    SELECT 
+        *
+    FROM centro_medico.view_facturacion_medico_tratamiento
+    WHERE fecha_facturacion 
+    BETWEEN '2024-03-01' AND '2024-05-01';
+```
+* Esta compuesta por los siguientes campos:
+
+            |   CAMPOS                   |
+            | --------------------       |
+            | medico                     |
+            | email                      |
+            | area                       |
+            | id_tratamiento             |
+            | descripcion                |
+            | pago_por_tratamiento       |
+            | horas_trabajadas_mensuales |
+            | fecha_facturacion          |
 
 > #### Tablas involucradas:
 >                       * profesiones
@@ -444,9 +613,10 @@ ___
 >                       * tratamientos
 >                       * factura_medico
 ___
+___
 
 
-> * "view_facturacion_tratamiento_paciente"
+> *  **_"view_facturacion_tratamiento_paciente"_**
 ```sql
     SELECT 
     *
@@ -456,7 +626,27 @@ ___
 >
 >
 > Esta vista muestra detalles de la facturacion del paciente de cada tratamiento. Esto sera consumido por la app para mostrar datos que deban usarse como facturacion real
->o llevar un control de ello.
+>o llevar un control de ello. Puede filtrarse por campos.
+* Ejemplo:
+```sql
+    SELECT 
+    *
+    FROM centro_medico.view_facturacion_tratamiento_paciente
+    WHERE obra_social LIKE 'osde';
+```
+* Esta compuesta por los siguientes campos:
+
+            |   CAMPOS                   |
+            | --------------------       |
+            | paciente                   |
+            | tiene_obra_social          |
+            | obra_social                |
+            | carnet_numero              |
+            | estado                     |
+            | descripcion                |
+            | cuota                      |
+            | mes_facturado              |
+            | fecha_fin                  |
 
 > #### Tablas involucradas: 
 >                       * obra_social_pacientes
@@ -466,11 +656,11 @@ ___
 ___
 
 
-## Funciones:
+## FUNCIONES:
 
 > * "sumar_IVA_21()"
 ```sql
-    sumar_IVA_21(FLOAT)
+    sumar_IVA_21(DECIMAL)
 ```
 >
 >
@@ -517,9 +707,9 @@ ___
 >Funcion para checkear que la obra social ingresada exista al momento de registrar un empleado. Podria otros casos de uso. Devuelve un booleano, si se encuentra dentro de las obras sociales para empleados arroja 'True(1)', sino arroja 'False(0)'. Si la cantidad de obra sociales crece se deberia crear una nueva tabla.
 ___
 
-## Procedimientos:
+## PROCEDIMIENTOS ALMACENADOS:
 
-> * "alta_paciente"
+> *  **_"alta_paciente"_**
 ```sql
     CALL centro_medico.alta_paciente (3, 'Rosalia', 'Verdebuena', 30551597, '2024-07-28', 0, 'VITAL', 745159);
 ```
@@ -549,8 +739,11 @@ CALL centro_medico.alta_paciente (3, 'Rosalia', 'Verdebuena', 30551597, '2024-07
 ```
 
 ___
+___
 
-> * "alta_medico"
+
+
+> *  **_"alta_medico"_**
 ```sql
     CALL centro_medico.alta_medico( 3, 'Julieta', 'Ruiz', 25141547444, 'JulietaRuiz@gmail.com', 0, DATE(CURRENT_DATE), 'Psicologia', 44785450);
 ```
@@ -568,9 +761,12 @@ ___
 >           * numero_matricula
 
 >Este procedimiento actua sobre la tabla medicos, profesion_medicos y matriculas. Si sale todo ok. Esto dispara un trigger que registra esta matricula en la tabla RUP que seria el validador de las matriculas.
+
+___
 ___
 
-> * "alta_tratamiento"
+
+> *  **_"alta_tratamiento"_**
 ```sql
     CALL centro_medico.alta_tratamiento(1, 64, 128, 'Esto es una descripcion para el tratamiento. ', '2024-07-29', NULL );
 ```
@@ -591,9 +787,10 @@ ___
 >Este proceso al finalizar dispara un trigger que se encargara de actualizar el estado del paciente y medico involucrado a "En tratamiento".
 
 ___
+___
 
 
-> * "terminar_tratamiento"
+> *  **_"terminar_tratamiento"_**
 ```sql
    CALL centro_medico.terminar_tratamiento(64,128);
 ```
@@ -606,8 +803,10 @@ ___
 >En este procedimiento se involucra la tabla "tratamientos", "medicos" y "pacientes".
 
 ___
+___
 
-> * "generar_factura_medico"
+
+> *  **_"generar_factura_medico"_**
 ```sql
    CALL centro_medico.generar_factura_medico( 64, 128, 64, 360000.00, '2024-07-30');
 ```
@@ -621,9 +820,11 @@ ___
 >           * mes_facturado
 
 >Este proceso no involucra ninguna tabla, solo hace consultas a la tabla "Tratamientos y Medicos" para chekear si los identificadores que se pasan como argumento son reales.
+
+___
 ___
 
-> * "generar_factura_paciente"
+> *   **_"generar_factura_paciente"_**
 ```sql
    CALL centro_medico.generar_factura_paciente( 128, 128 , 380000.00, '2024-07-30');
 ```
@@ -638,9 +839,12 @@ ___
 >Este proceso no involucra ninguna tabla, solo hace consultas a la tabla "Tratamientos y Pacientes" para chekear si los identificadores que se pasan como argumento son reales.
 
 >Si el paciente tiene obra social, tendra un descuento segun las que esten registradas en el centro medico. Este descuento se aplica, o no, justo antes de la sentencia insert dentro del procedimiento. Si logra aplicar el descuento. Se crea un registro en una tabla auditora llamada auditoria_trigger. Si no, se registra tal cual se ingresa como parametro al procedimiento.
+
+___
 ___
 
-> * "alta_empleado"
+
+> *   **_"alta_empleado"_**
 ```sql
     -- Caso de uso correcto
     CALL centro_medico.alta_empleado(2, 'Hernan', 'Vera', 35456852, 'Av. Etcheverry 4574', 1150177897, '2024-11-25', 'mantenimiento', 'UOCRA', 1474456, '2024-11-15');
@@ -661,9 +865,12 @@ ___
 >               * alta_obra_social
 
 >Este procedimiento tiene TCL, si algo arroja una excepcion hara un rollback mostrando un msj personalizado por cada error.
+
+___
 ___
 
-> * "nueva_factura_empleados"
+
+> *  **_"nueva_factura_empleados"_**
 ```sql
     -- Caso de uso
     CALL centro_medico.nueva_factura_empleados(3, '2024-08-13');
@@ -675,6 +882,7 @@ ___
 >               * fecha_registrada
 
 >Este proceso no involucra ninguna tabla, solo hace consultas a la tabla "Empleados" para chekear si el identificador que se pasa como argumento es real.
+
 
 ## TRIGGERS
 

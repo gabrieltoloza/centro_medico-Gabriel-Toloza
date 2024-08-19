@@ -178,17 +178,17 @@ CREATE VIEW centro_medico.view_show_pacientes_obra_social AS
 		CASE 
 			WHEN p.estado = 0 THEN 'Inactivo'
 			ELSE 'Activo'
-		END,
+		END AS actividad,
 		CASE
 			WHEN p.tiene_obra_social = 0 THEN 'No'
 			ELSE 'Si'
-		END,
+		END AS tiene_obra_social,
 		osp.nombre_obra_social_paciente,
 		osp.carnet_numero
 	FROM centro_medico.obra_social_pacientes AS osp
 	JOIN centro_medico.pacientes AS p
 		USING (id_paciente);
-	
+
 
     -- Usando vista "view_show_pacientes_obra_social"
     -- Usando vista "view_show_pacientes_obra_social"
@@ -207,7 +207,7 @@ SELECT * FROM centro_medico.view_show_pacientes_obra_social;
 DROP VIEW IF EXISTS centro_medico.view_show_tratamientos_main;
 CREATE VIEW centro_medico.view_show_tratamientos_main AS
 	SELECT 
-		osp.nombre_obra_social_paciente AS OS,
+		osp.nombre_obra_social_paciente AS obra_social,
 		osp.carnet_numero AS carnet_OS,
 		CONCAT(pac.nombre_paciente, ' ', pac.apellido) AS paciente,
 		CONCAT(med.nombre_medico, ' ', med.apellido_medico) AS medico,
