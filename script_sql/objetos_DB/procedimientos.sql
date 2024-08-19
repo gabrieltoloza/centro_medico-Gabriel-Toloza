@@ -351,7 +351,7 @@ BEGIN
 			INSERT INTO centro_medico.obra_social_pacientes 
 				(id_paciente, nombre_obra_social_paciente, carnet_numero)
 			VALUES
-				(LAST_INSERT_ID(), nombre_obra_social, numero_carnet);
+				(LAST_INSERT_ID(), UPPER(nombre_obra_social), numero_carnet);
 			
 		END IF;
 		

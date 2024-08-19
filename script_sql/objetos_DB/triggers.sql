@@ -119,9 +119,9 @@ CREATE TRIGGER centro_medico.alta_paciente_controller
 		SET full_name = CONCAT(NEW.nombre_paciente, ' ', NEW.apellido);
 		
 		INSERT INTO centro_medico.alta_paciente_control
-			(id_paciente, nombres, fecha_alta)
+			(id_paciente, nombres, fecha_alta, usuario)
 		VALUES
-			(NEW.id_paciente, full_name, NEW.fecha_alta);
+			(NEW.id_paciente, full_name, NEW.fecha_alta, USER());
 		
 	END //
 DELIMITER ;
@@ -136,7 +136,6 @@ DELIMITER ;
 --  en la tabla auditora esta actualiza el campo obra_social del mismo id correspondiente.
 
 
-
 DROP TRIGGER IF EXISTS centro_medico.alta_paciente_controller_OS;
 DELIMITER //
 
@@ -146,6 +145,8 @@ CREATE TRIGGER centro_medico.alta_paciente_controller_OS
 	BEGIN 
 		
 		DECLARE check_obra_social VARCHAR(255);
+
+		SET check_obra_social = UPPER(check_obra_social);
 	
 		SELECT osp.nombre_obra_social_paciente INTO check_obra_social
 		FROM centro_medico.obra_social_pacientes AS osp

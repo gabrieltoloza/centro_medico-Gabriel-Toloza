@@ -459,6 +459,7 @@ CREATE TABLE alta_paciente_control (
 	nombres VARCHAR(255),
 	fecha_alta DATE,
 	obra_social VARCHAR(255) DEFAULT NULL,
+	usuario VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id_control)
 ) COMMENT 'Tabla para controlar la creacion de un paciente. Actua sobre la tabla "pacientes" .';
 

@@ -234,7 +234,7 @@ LOAD    DATA LOCAL INFILE './data_csv/tratamientos.csv'
             FIELDS TERMINATED   BY ',' ENCLOSED BY '"'
             LINES TERMINATED    BY '\n'
             IGNORE 1 LINES
-            (id_centro_medico, id_medico, id_paciente, descripcion, fecha_inicio, fecha_fin);
+            (id_centro_medico, id_medico, id_paciente, descripcion, fecha_inicio);
 
 
 SHOW WARNINGS;

@@ -691,7 +691,7 @@ ___
 
 > * "DISCOUNT_OS()"
 ```sql
-    DISCOUNT_OS(VARCHAR) 
+    DISCOUNT_OS(FLOAT, VARCHAR) 
 ```
 >
 >
@@ -704,7 +704,7 @@ ___
 ```
 >
 >
->Funcion para checkear que la obra social ingresada exista al momento de registrar un empleado. Podria otros casos de uso. Devuelve un booleano, si se encuentra dentro de las obras sociales para empleados arroja 'True(1)', sino arroja 'False(0)'. Si la cantidad de obra sociales crece se deberia crear una nueva tabla.
+>Funcion para checkear que la obra social ingresada exista al momento de registrar un empleado. Podria tener otros casos de uso. Devuelve un booleano, si se encuentra dentro de las obras sociales para empleados arroja 'True(1)', sino arroja 'False(0)'. Si la cantidad de obra sociales crece se deberia crear una nueva tabla.
 ___
 
 ## PROCEDIMIENTOS ALMACENADOS:
@@ -903,12 +903,18 @@ ___
 
 >Este trigger crea un registro para controlar las inserciones en la tabla "pacientes". 
 >Se crea un registro en la tabla "alta_paciente_control".
+
+* Ejemplo:
+> Al ejecutar el procedimiento _**"alta_paciente"**_ (sin obra social) se crea un registro en la tabla _**"alta_paciente_control"**_ , con el campo de obra social vacio(null)
 ___
 
 > * "alta_paciente_controller_OS"
 
 >Este trigger controla la obra social de los pacientes en la tabla auditora, si el nuevo registro en "obra_social_pacientes" se encuentra
 >en la tabla auditora esta actualiza el campo obra_social del mismo id correspondiente.
+
+* Ejemplo:
+> Al ejecutar el procedimiento _**"alta_paciente"**_ (con obra social) se crea un registro en la tabla _**"alta_paciente_control"**_ , con el campo de obra social correspondiente.
 ___
 
 > * "alta_medico_controller"
