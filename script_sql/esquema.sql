@@ -477,6 +477,7 @@ CREATE TABLE centro_medico.alta_medico_control (
 	num_matricula BIGINT DEFAULT NULL,
 	email VARCHAR(255),
 	fecha_alta DATE,
+	usuario VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id_control)
 ) COMMENT 'Tabla para llevar un registro completo sin joins de los medicos registrados medicos.';
 

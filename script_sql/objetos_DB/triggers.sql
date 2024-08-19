@@ -182,9 +182,9 @@ CREATE TRIGGER centro_medico.alta_medico_controller
 		SET full_name = CONCAT(NEW.nombre_medico, ' ', NEW.apellido_medico);
 	
 		INSERT INTO centro_medico.alta_medico_control
-			(id_medico, full_name, cuit, email, fecha_alta)
+			(id_medico, full_name, cuit, email, fecha_alta, usuario)
 		VALUES
-			(NEW.id_medico, full_name, NEW.cuit, NEW.email, NEW.fecha_alta);
+			(NEW.id_medico, full_name, NEW.cuit, NEW.email, NEW.fecha_alta, USER());
 		
 	END //
 DELIMITER ;
