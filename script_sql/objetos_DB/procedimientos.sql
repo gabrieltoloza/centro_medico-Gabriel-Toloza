@@ -137,8 +137,21 @@ BEGIN
 	
 	DECLARE check_id_paciente INT;
 	DECLARE check_id_tratamiento INT;
+	DECLARE check_id_tratamiento_paciente INT;
 	DECLARE check_obra_social VARCHAR(255);
 	DECLARE precio_final DECIMAL(12,2);
+	DECLARE error_message VARCHAR(255);
+
+
+	-- Bloque de excepciones
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+		-- Manejo de excepcion
+		ROLLBACK;
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+	END;
+
+	START TRANSACTION;	
 
 	-- Checkeando si existe el id_paciente
 	SELECT p.id_paciente INTO check_id_paciente
@@ -155,6 +168,13 @@ BEGIN
 	FROM centro_medico.obra_social_pacientes AS osp
 	WHERE osp.id_paciente = check_id_paciente;
 
+	SELECT t.id_paciente INTO check_id_tratamiento_paciente
+	FROM centro_medico.tratamientos AS t
+	WHERE t.id_tratamiento = check_id_tratamiento
+	ORDER BY t.id_paciente DESC
+	LIMIT 1;
+	
+
 	SET precio_final = CASE
 							WHEN check_obra_social IS NULL THEN cuota_mensual
 							ELSE 
@@ -162,9 +182,14 @@ BEGIN
 						END;
 	
 	IF check_id_paciente IS NULL THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No pudo encontrarse el registro del paciente';
+		SET error_message = 'No pudo encontrarse el registro del paciente';
+		SIGNAL SQLSTATE '45000';
 	ELSEIF check_id_tratamiento IS NULL THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se pudo encontrar el registro del tratamiento';
+		SET error_message = 'No se pudo encontrar el registro del tratamiento';
+		SIGNAL SQLSTATE '45000';
+	ELSEIF check_id_paciente != check_id_tratamiento_paciente THEN
+		SET error_message = 'El id del paciente no corresponde al tratamiento indicado';
+		SIGNAL SQLSTATE '45000';
 	ELSE
 		INSERT INTO centro_medico.factura_paciente
 			(id_tratamiento, id_paciente, cuota, mes_facturado)
@@ -182,9 +207,14 @@ BEGIN
 			VALUES
 				(CONCAT('Se aplico el descuento paciente con el id: ', paciente_id, ' Cuota: ', precio_final, ', con la obra social ', check_obra_social));
 		END IF;
+	
+		COMMIT;	
+	
 		SELECT *
 		FROM centro_medico.factura_paciente AS fp
-		WHERE fp.id_paciente = check_id_paciente;
+		WHERE fp.id_paciente = check_id_paciente
+		ORDER BY fp.id_factura_paciente DESC
+		LIMIT 1;
 	END IF;
 
 
@@ -686,6 +716,9 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL centro_medico.nueva_factura_empleados(3, '2024-08-13');
+	--"Usando el procedimiento 'nueva_factura_empleados' : "
+	--"Usando el procedimiento 'nueva_factura_empleados' : "
+	
+	--CALL centro_medico.nueva_factura_empleados(3, '2024-08-13');
 
 SHOW WARNINGS;

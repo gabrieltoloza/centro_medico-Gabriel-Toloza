@@ -691,7 +691,7 @@ ___
 
 > * "DISCOUNT_OS()"
 ```sql
-    DISCOUNT_OS(FLOAT, VARCHAR) 
+    DISCOUNT_OS(DECIMAL, VARCHAR) 
 ```
 >
 >
@@ -760,7 +760,7 @@ ___
 >           * profesion
 >           * numero_matricula
 
->Este procedimiento actua sobre la tabla medicos, profesion_medicos y matriculas. Si sale todo ok. Esto dispara un trigger que registra esta matricula en la tabla RUP que seria el validador de las matriculas.
+>Este procedimiento actua sobre la tabla medicos, profesion_medicos y matriculas. Si sale todo ok. Esto dispara un trigger que registra esta matricula en la tabla RUP que seria el validador de las matriculas. Este procedimiento tiene iun proceso TCL.
 
 ___
 ___
@@ -800,7 +800,7 @@ ___
 >           * id_medico
 >           * id_paciente
 
->En este procedimiento se involucra la tabla "tratamientos", "medicos" y "pacientes".
+>En este procedimiento se involucra la tabla "tratamientos", "medicos" y "pacientes". Este procedimiento tiene un proceso TCL.
 
 ___
 ___
@@ -838,7 +838,7 @@ ___
 
 >Este proceso no involucra ninguna tabla, solo hace consultas a la tabla "Tratamientos y Pacientes" para chekear si los identificadores que se pasan como argumento son reales.
 
->Si el paciente tiene obra social, tendra un descuento segun las que esten registradas en el centro medico. Este descuento se aplica, o no, justo antes de la sentencia insert dentro del procedimiento. Si logra aplicar el descuento. Se crea un registro en una tabla auditora llamada auditoria_trigger. Si no, se registra tal cual se ingresa como parametro al procedimiento.
+>Si el paciente tiene obra social, tendra un descuento segun las que esten registradas en el centro medico. Este descuento se aplica, o no, justo antes de la sentencia insert dentro del procedimiento. Si logra aplicar el descuento. Se crea un registro en una tabla auditora llamada auditoria_trigger. Si no, se registra tal cual se ingresa como parametro al procedimiento. Este procedimiento tiene un proceso TCL.
 
 ___
 ___
@@ -941,3 +941,33 @@ ___
 >Busca la profesion y actualiza el registro.
 * Ejemplo:
 > Al insertarse una nueva matricula en la tabla _**"profesion_medicos"**_ , este trigger actualizara el campo "profesion" de la tabla _**"alta_medico_control"**_ con la profesion correspondiente. Esto puede probarse usando el procedimiento _**"alta_medico"**_ .
+___
+___
+
+## ROLES Y USUARIOS:
+
+> La base de datos "centro_medico" tendra 3 roles:
+
+* **_Administracion_**: 
+> Se encargara de gestionar el alta y baja de empleados, medicos, pacientes y tratamientos. Por lo que tendra permisos de ver, insertar, modificar y borrar sobre estas tablas y sus relaciones.
+
+> _**No tendra permisos sobre el área de facturaciones**_.
+
+* **_Facturaciones_**:
+> Se encargara de gestionar las facturaciones del centro_medico. Por lo que tendra CRUD sobre las tablas de facturaciones (honorario_facturas, factura_medico, factura_paciente). 
+
+> _**No tendra permisos sobre el área de administracion**_.
+
+* **_Propietarios_**:
+> Este rol lo tendran solo los propietarios del centro medico, solo tendran permisos de lectura para llevar algun tipo de control.
+
+### Usuarios del area administrativa:
+>           administrador1
+>           administrador2
+
+### Usuarios del area de facturaciones
+>           contador1
+>           contador2
+
+### Usuarios del area de propietarios:
+>           duenos
