@@ -780,7 +780,7 @@ ___
 >           * id_paciente
 >           * detalle
 >           * fecha_inicio
->           * fehca_fin(si no finalizo se ingresa null manualmente)
+>           * fecha_fin(si no finalizo se ingresa null manualmente)
 
 >Este proceso involucra a la tabla Tratamientos, Medicos, Pacientes.
 
@@ -888,8 +888,10 @@ ___
 
 > * "insertar_RUP_matricula"
 
->Este trigger se encarga de registrar la nueva matricula de un medico en la tabla " RUP_registro_,matriculas" esta tabla simula un registro que validaria la existencia de las matriculas de los medicos.
+>Este trigger se encarga de registrar la nueva matricula de un medico en la tabla " RUP_registro_matriculas" esta tabla simula un registro que validaria la existencia de las matriculas de los medicos.
 >Actua sobre la tabla ---> "matriculas"
+* Ejemplo
+> Al ejecutar el procedimiento _**alta_medico**_ se registra la matricula en la tabla _**RUP_registro_matriculas**_ , esta tabla se utilizaria para comparar la veracidad con el registro real de la matricula, osea, que no este falcificada.
 ___
 
 > * "alta_tratamiento_controller"
@@ -897,6 +899,8 @@ ___
 >Este trigger controla actualiza el estado del paciente y medico, de false a true, que se registraron en el momento que se ejecuta el alta del tratamiento. 
 >Actua sobre la tabla ---> "tratamientos". 
 >Este estado indica si esta inactivo o en tratamiento cualquiera de las dos entidades.
+* Ejemplo:
+> Si ejecuta el procedimiento _**"alta_tratamiento"**_ , actualiza el valor booleano en FALSE(0) a TRUE(1) del medico y paciente ingresado en los argumentos.
 ___
 
 > * "alta_paciente_controller"
@@ -920,14 +924,20 @@ ___
 > * "alta_medico_controller"
 
 >Este trigger inserta los datos relevantes del registro creado , medico, y lo inserta en la tabla auditora de medicos "alta_medico_control"
+* Ejemplo:
+> Al ejecutar el procedimiento _**"alta_medico"**_ se insertara los datos relevantes de este registro en la tabla _**"alta_medico_control"**_ .
 ___
 
 > * "alta_medico_controller_matricula"
 
 >Este trigger se encarga de vincular la matricula del medico recien creado o matricula insertada, y lo registra en la tabla auditoria de medicos "alta_medico_control"
+* Ejemplo:
+> Al insertarse una nueva matricula en la tabla _**"matriculas"**_ , este trigger actualizara el campo "matricula" de la tabla _**"alta_medico_control"**_ con la matricula correspondiente. Esto puede probarse usando el procedimiento _**"alta_medico"**_ .
 ___
 
 > * "alta_medico_controller_profesion"
 
 >Este trigger se encarga de vincular la profesion a la tabla auditoria de medicos "alta_medico_control".
 >Busca la profesion y actualiza el registro.
+* Ejemplo:
+> Al insertarse una nueva matricula en la tabla _**"profesion_medicos"**_ , este trigger actualizara el campo "profesion" de la tabla _**"alta_medico_control"**_ con la profesion correspondiente. Esto puede probarse usando el procedimiento _**"alta_medico"**_ .

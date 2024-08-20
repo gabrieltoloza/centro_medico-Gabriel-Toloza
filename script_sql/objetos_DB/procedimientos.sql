@@ -415,6 +415,7 @@ BEGIN
 	DECLARE check_id_profesion INT;
 	DECLARE check_num_matricula BIGINT;
 	DECLARE error_message VARCHAR(255);
+	DECLARE last_id INT;
 
 	-- Bloque de excepciones
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -433,20 +434,28 @@ BEGIN
 	FROM centro_medico.medicos AS sm
 	WHERE sm.cuit = cuit_input;
 
+	SET error_message = 'llego cuit';
+
 	-- Checkea si la profesion se encuentra en la base de datos y la inserta en la variable "check_profesion"
 	SELECT sp.nombre_profesion INTO check_profesion
 	FROM centro_medico.profesiones AS sp
 	WHERE sp.nombre_profesion = check_profesion;
+
+	SET error_message = 'llego profesion';
 
 	-- Checkea si la profesion se encuentra en la base de datos y la inserta en la variable "check_profesion"
 	SELECT sp.id_profesion INTO check_id_profesion
 	FROM centro_medico.profesiones AS sp
 	WHERE sp.nombre_profesion = profesion;
 
+	SET error_message = 'llego profesion';
+
 	-- Checkea si la matricula se encuentra en la base de datos y la inserta en la variable " check_num_matricula"
 	SELECT mat.numero_matricula INTO check_num_matricula 
 	FROM centro_medico.matriculas AS mat
 	WHERE mat.numero_matricula = num_matricula;
+
+	SET error_message = 'llego matricula';
 	
 
 	IF check_cuit IS NOT NULL THEN
@@ -468,19 +477,27 @@ BEGIN
 		VALUES
 			(id_cm, nombre, apellido, cuit_input, correo, status, alta_fecha);
 		
+		SET error_message = 'paso 1ra insercion';
+		SET last_id = LAST_INSERT_ID();
+		
+		
+	
+	
 		-- Creando un nuevo registro asociando al medico creado a la tabla profesiones mediante la tabla intermedia
 		INSERT INTO centro_medico.profesion_medicos 
 			(id_profesion, id_medico)
 		VALUES 
-			(check_id_profesion, LAST_INSERT_ID());
+			(check_id_profesion, last_id);
+		
+		SET error_message = 'paso 2da insercion';
 		
 		-- Creando un nuevo registro en matriculas usando el id recien insertado, 
 		INSERT INTO centro_medico.matriculas 
 			(id_medico, numero_matricula)
 		VALUES
-			(LAST_INSERT_ID(), num_matricula);
+			(last_id, num_matricula);
 		
-		
+		SET error_message = 'llego al final';
 	END IF;
 
 	COMMIT;
