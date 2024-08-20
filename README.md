@@ -971,3 +971,12 @@ ___
 
 ### Usuarios del area de propietarios:
 >           duenos
+
+___
+___
+
+
+## BACKUP 
+
+> Para generar un backup de la base de datos ejecutamos el comando **_make create-backup_** y se generara el backup en formato .sql en la raiz de codespaces.
+
