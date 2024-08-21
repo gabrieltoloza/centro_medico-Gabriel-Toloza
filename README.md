@@ -1021,3 +1021,11 @@ ___
 <br>
 
 > De esta manera automatizamos la creacion del backup y lo dejamos ubicado en la raiz de nuestro entorno de trabajo.
+
+
+
+<br>
+<br>
+
+# ACLARACION
+>Toda esta documentacion esta orientada para que sea consumida por un Backend Developer o DBA por lo que esta detallado lo que deben saber, tomar decisiones y hacer uso de este proyecto. 
