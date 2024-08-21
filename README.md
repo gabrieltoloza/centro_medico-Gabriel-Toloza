@@ -951,15 +951,43 @@ ___
 * **_Administracion_**: 
 > Se encargara de gestionar el alta y baja de empleados, medicos, pacientes y tratamientos. Por lo que tendra permisos de ver, insertar, modificar y borrar sobre estas tablas y sus relaciones.
 
+![Permisos - Rol - Administracion](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/accesos_administracion.png)
+
+<br>
+
+![Permisos - Rol - Administracion](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/prueba_acceso_admin1.png)
+
+<br>
+
+![Permisos - Rol - Administracion](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/prueba_acceso_admin2.png)
+
 > _**No tendra permisos sobre el área de facturaciones**_.
 
 * **_Facturaciones_**:
 > Se encargara de gestionar las facturaciones del centro_medico. Por lo que tendra CRUD sobre las tablas de facturaciones (honorario_facturas, factura_medico, factura_paciente). 
 
+![Permisos - Rol - Facturaciones](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/accesos_facturaciones.png)
+
+<br>
+
+![Permisos - Rol - Facturaciones](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/prueba_acceso_contador1.png)
+
+<br>
+
+![Permisos - Rol - Facturaciones](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/prueba_acceso_contador2.png)
+
 > _**No tendra permisos sobre el área de administracion**_.
 
 * **_Propietarios_**:
 > Este rol lo tendran solo los propietarios del centro medico, solo tendran permisos de lectura para llevar algun tipo de control.
+
+![Permisos - Rol - Propietarios](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/accesos_propietario.png)
+
+<br>
+
+![Permisos - Rol - Propietarios](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/prueba_acceso_duenos.png)
+
+<br>
 
 ### Usuarios del area administrativa:
 >           administrador1
