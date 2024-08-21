@@ -716,9 +716,9 @@ BEGIN
 END //
 DELIMITER ;
 
-	--"Usando el procedimiento 'nueva_factura_empleados' : "
-	--"Usando el procedimiento 'nueva_factura_empleados' : "
+	-- "Usando el procedimiento 'nueva_factura_empleados' : "
+	-- "Usando el procedimiento 'nueva_factura_empleados' : "
 	
-	--CALL centro_medico.nueva_factura_empleados(3, '2024-08-13');
+	-- CALL centro_medico.nueva_factura_empleados(3, '2024-08-13');
 
 SHOW WARNINGS;
