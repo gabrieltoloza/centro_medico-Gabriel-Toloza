@@ -69,7 +69,7 @@ DELIMITER ;
 
     -- "Usando la funcion CAPITALIZE"
     -- "Usando la funcion CAPITALIZE"
-    SELECT CAPITALIZE('no quiero saber mas sobre el tema') AS resultado;
+    SELECT CAPITALIZE('el texto fui ingresado en minuscula') AS resultado;
 
 
 

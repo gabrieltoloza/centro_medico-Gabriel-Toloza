@@ -37,7 +37,7 @@ CREATE VIEW view_show_empleados_all_data AS
 
     -- Usando vista "view_show_empleados_all_data"
     -- Usando vista "view_show_empleados_all_data"
-    SELECT * FROM centro_medico.view_show_empleados_all_data;
+    SELECT * FROM centro_medico.view_show_empleados_all_data LIMIT 15;
 
 
 
@@ -68,7 +68,7 @@ CREATE VIEW view_show_empleados_facturaciones AS
 
     -- Usando vista "view_show_empleados_facturaciones"
     -- Usando vista "view_show_empleados_facturaciones"
-    SELECT * FROM centro_medico.view_show_empleados_facturaciones;
+    SELECT * FROM centro_medico.view_show_empleados_facturaciones LIMIT 15;
 
 
 
@@ -99,7 +99,7 @@ CREATE VIEW centro_medico.view_show_empleados_obras_sociales AS
 
     -- Usando vista "view_show_empleados_obras_sociales"
     -- Usando vista "view_show_empleados_obras_sociales"
-    SELECT * FROM centro_medico.view_show_empleados_obras_sociales;
+    SELECT * FROM centro_medico.view_show_empleados_obras_sociales LIMIT 15;
 
 
 
@@ -147,7 +147,7 @@ CREATE VIEW centro_medico.view_duenos_centros_medicos AS
 
     -- Usando vista "view_show_duenos_centros_medicos"
     -- Usando vista "view_show_duenos_centros_medicos"
-    SELECT * FROM centro_medico.view_duenos_centros_medicos;
+    SELECT * FROM centro_medico.view_duenos_centros_medicos LIMIT 15;
 
 
 
@@ -193,7 +193,7 @@ CREATE VIEW centro_medico.view_show_pacientes_obra_social AS
 
     -- Usando vista "view_show_pacientes_obra_social"
     -- Usando vista "view_show_pacientes_obra_social"
-SELECT * FROM centro_medico.view_show_pacientes_obra_social;
+SELECT * FROM centro_medico.view_show_pacientes_obra_social LIMIT 15;
 
 
 
@@ -234,7 +234,7 @@ CREATE VIEW centro_medico.view_show_tratamientos_main AS
 	
     -- Usando vista "view_show_tratamientos_main"
     -- Usando vista "view_show_tratamientos_main"
-    SELECT * FROM centro_medico.view_show_tratamientos_main;
+    SELECT * FROM centro_medico.view_show_tratamientos_main LIMIT 15;
 
 
 
@@ -275,7 +275,7 @@ CREATE VIEW centro_medico.view_show_medicos_full_data AS
 
     -- Usando vista "view_show_medicos_full_data"
     -- Usando vista "view_show_medicos_full_data"
-    SELECT * FROM centro_medico.view_show_medicos_full_data;
+    SELECT * FROM centro_medico.view_show_medicos_full_data LIMIT 15;
 
 
 
@@ -315,7 +315,7 @@ CREATE VIEW centro_medico.view_facturacion_medico_tratamiento AS
 
     -- Usando vista "view_facturacion_medico_tratamiento"
     -- Usando vista "view_facturacion_medico_tratamiento"
-    SELECT * FROM centro_medico.view_facturacion_medico_tratamiento;
+    SELECT * FROM centro_medico.view_facturacion_medico_tratamiento LIMIT 15;
 
 
 
@@ -357,7 +357,7 @@ CREATE VIEW centro_medico.view_facturacion_tratamiento_paciente AS
 
     -- Usando vista "view_facturacion_tratamiento_paciente"
     -- Usando vista "view_facturacion_tratamiento_paciente"
-SELECT * FROM centro_medico.view_facturacion_tratamiento_paciente;
+SELECT * FROM centro_medico.view_facturacion_tratamiento_paciente LIMIT 15;
 
 
 
