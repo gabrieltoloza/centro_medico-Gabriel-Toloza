@@ -172,6 +172,7 @@ CREATE VIEW centro_medico.view_duenos_centros_medicos AS
 DROP VIEW IF EXISTS centro_medico.view_show_pacientes_obra_social;
 CREATE VIEW centro_medico.view_show_pacientes_obra_social AS
 	SELECT 
+		p.id_paciente,
 		CONCAT(p.nombre_paciente, ' ', p.apellido) AS paciente,
 		p.dni,
 		p.fecha_alta AS alta_CM,
@@ -183,10 +184,10 @@ CREATE VIEW centro_medico.view_show_pacientes_obra_social AS
 			WHEN p.tiene_obra_social = 0 THEN 'No'
 			ELSE 'Si'
 		END AS tiene_obra_social,
-		osp.nombre_obra_social_paciente,
-		osp.carnet_numero
-	FROM centro_medico.obra_social_pacientes AS osp
-	JOIN centro_medico.pacientes AS p
+		IFNULL(osp.nombre_obra_social_paciente, 'N/A') AS obra_social,
+		IFNULL(osp.carnet_numero, 0) AS carnet_numero
+	FROM centro_medico.pacientes AS p
+	LEFT JOIN centro_medico.obra_social_pacientes AS osp
 		USING (id_paciente);
 
 
@@ -216,6 +217,7 @@ CREATE VIEW centro_medico.view_show_tratamientos_main AS
 		t.fecha_inicio,
 		CASE 
 			WHEN t.fecha_fin IS NULL THEN 'Tratamiento activo'
+			WHEN t.fecha_fin IS NOT NULL THEN 'Tratamiento finalizado'
 		END AS fecha_fin
 	FROM centro_medico.obra_social_pacientes AS osp
 	JOIN centro_medico.pacientes AS pac

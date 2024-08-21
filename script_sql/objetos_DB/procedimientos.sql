@@ -75,6 +75,7 @@ BEGIN
 	
 	DECLARE check_id_medico INT;
 	DECLARE check_id_tratamiento INT;
+	DECLARE check_tratamiento_add INT;
 
 	-- Checkeando si existe el id_medico:
 	SELECT m.id_medico INTO check_id_medico
@@ -86,11 +87,18 @@ BEGIN
 	FROM centro_medico.tratamientos AS st
 	WHERE st.id_tratamiento = tratamiento_id;
 
+	SELECT t.id_tratamiento INTO check_tratamiento_add
+	FROM centro_medico.tratamientos AS t
+	WHERE t.id_medico = medico_id
+	AND t.id_tratamiento = tratamiento_id;
+
 
 	IF check_id_tratamiento IS NULL THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se encontro un tratamiento con ese identificador';
 	ELSEIF check_id_medico IS NULL THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El identificador del medico no existe.';
+	ELSEIF check_tratamiento_add IS NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El medico no coincide con el tratamiento';
 	ELSE 
 		INSERT INTO centro_medico.factura_medico 
 			(id_medico, id_tratamiento, horas_trabajadas, monto, mes_facturado)
@@ -296,6 +304,7 @@ BEGIN
 	AND st.id_medico = check_id_medico
 	ORDER BY st.id_tratamiento DESC
 	LIMIT 1;
+
 
 	IF check_id_paciente IS NULL OR check_id_medico IS NULL THEN
 		SET error_message = 'NO SE PUDO FINALIZAR EL TRATAMIENTO. PACIENTE O MEDICO NO ENCONTRADO';
