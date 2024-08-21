@@ -948,6 +948,8 @@ ___
 
 > La base de datos "centro_medico" tendra 3 roles:
 
+<br>
+
 * **_Administracion_**: 
 > Se encargara de gestionar el alta y baja de empleados, medicos, pacientes y tratamientos. Por lo que tendra permisos de ver, insertar, modificar y borrar sobre estas tablas y sus relaciones.
 
@@ -962,6 +964,8 @@ ___
 ![Permisos - Rol - Administracion](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/prueba_acceso_admin2.png)
 
 > _**No tendra permisos sobre el área de facturaciones**_.
+
+<br>
 
 * **_Facturaciones_**:
 > Se encargara de gestionar las facturaciones del centro_medico. Por lo que tendra CRUD sobre las tablas de facturaciones (honorario_facturas, factura_medico, factura_paciente). 
@@ -978,6 +982,8 @@ ___
 
 > _**No tendra permisos sobre el área de administracion**_.
 
+<br>
+
 * **_Propietarios_**:
 > Este rol lo tendran solo los propietarios del centro medico, solo tendran permisos de lectura para llevar algun tipo de control.
 
@@ -986,6 +992,8 @@ ___
 <br>
 
 ![Permisos - Rol - Propietarios](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/prueba_acceso_duenos.png)
+
+> El Rol propietario solo tiene permisos de lectura.
 
 <br>
 
@@ -1008,3 +1016,8 @@ ___
 
 > Para generar un backup de la base de datos ejecutamos el comando **_make create-backup_** y se generara el backup en formato .sql en la raiz de codespaces.
 
+![Backup - Ejecutado](https://github.com/gabrieltoloza/centro_medico-Gabriel-Toloza/blob/main/imagenes/prueba_del_backup.png)
+
+<br>
+
+> De esta manera automatizamos la creacion del backup y lo dejamos ubicado en la raiz de nuestro entorno de trabajo.
